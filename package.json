@@ -1,22 +1,42 @@
 {
   "name": "vk-tinker",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "МАМИН'S КЛАД VK [https://vk.com/maminsklad2015]",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf dist",
+    "start:server": "nodemon --watch ./src/server ./src/server/index.babel.js --vkTinker:Environment development",
+    "start:client": "webpack-dev-server --config ./webpack/webpack.development.config --mode development --hot --inline --color",
+    "build:server": "babel --copy-files src/server -d dist/server && babel --copy-files src/shared -d dist/shared",
+    "build:client": "webpack --config ./webpack/webpack.production.config --mode production --progress --color",
+    "build": "npm run build:client && npm run build:server",
+    "start:server-prod": "cross-env NODE_ENV=production nodemon --watch ./dist/server ./dist/server/index.js --vkTinker:Environment production",
+    "dev:storybook": "start-storybook -p 9001 -c .storybook"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SchmerZ/vk-tinker.git"
   },
   "keywords": [
-    "vk"
+    "vk",
+    "МАМИН'S КЛАД [https://vk.com/maminsklad2015]"
   ],
-  "author": "VadimS",
+  "author": "Vadim Sheydakov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/SchmerZ/vk-tinker/issues"
   },
-  "homepage": "https://github.com/SchmerZ/vk-tinker#readme"
+  "homepage": "https://github.com/SchmerZ/vk-tinker#readme",
+  "devDependencies": {
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.2.2",
+    "@babel/plugin-proposal-class-properties": "7.3.0",
+    "@babel/plugin-transform-spread": "7.2.2",
+    "@babel/preset-env": "7.3.1",
+    "@babel/preset-react": "7.0.0",
+    "nodemon": "1.18.10"
+  },
+  "dependencies": {
+    "@babel/polyfill": "7.2.5",
+    "fastify": "1.14.1"
+  }
 }

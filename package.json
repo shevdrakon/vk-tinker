@@ -1,0 +1,22 @@
+{
+  "name": "vk-tinker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchmerZ/vk-tinker.git"
+  },
+  "keywords": [
+    "vk"
+  ],
+  "author": "VadimS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SchmerZ/vk-tinker/issues"
+  },
+  "homepage": "https://github.com/SchmerZ/vk-tinker#readme"
+}

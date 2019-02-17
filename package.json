@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.2.5",
-    "fastify": "1.14.1"
+    "fastify": "1.14.1",
+    "nconf": "0.10.0"
   }
 }

@@ -4,3 +4,6 @@ node_modules/
 .idea/**/*.*
 # except configurations
 !.idea/runConfigurations/**/*.*
+
+dist
+src/server/configuration/*.configuration.json

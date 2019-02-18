@@ -1,7 +1,7 @@
 import fastify from 'fastify'
 
 import config from './config';
-import setupAppRouting from './routers/app-routing-setup';
+import appRoutingPlugin from './routers/app-routing-plugin';
 
 const port = process.env.PORT || 8090;
 const app = fastify({logger: true});
@@ -9,8 +9,11 @@ const app = fastify({logger: true});
 console.log(`Configuration (${config.Environment}) loaded:`);
 console.log(config);
 
-setupAppRouting(app);
-//app.register(appRoutingSetup());
+app.register(appRoutingPlugin);
+
+if (config.Environment === 'development') {
+  app.ready(() => console.log(app.printRoutes()));
+}
 
 app.listen(port, (err, address) => {
   if (err) {
@@ -18,5 +21,5 @@ app.listen(port, (err, address) => {
     process.exit(1);
   }
 
-  app.log.info(`Server started on port ${address} with environment '${config.Environment}'.`);
+  app.log.info(`Server started on ${address} with environment '${config.Environment}'.`);
 });

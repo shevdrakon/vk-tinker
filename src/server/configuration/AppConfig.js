@@ -23,7 +23,7 @@ class AppConfig {
         file: configurationFilePath,
       })
       .required(
-        ['vkTinker:siteRoot', 'vkTinker:AccessKey', 'vkTinker:Originator']
+        ['vkTinker:siteRoot']
       );
   }
 

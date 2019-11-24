@@ -8,18 +8,25 @@ class AppConfig {
       .env()
       .argv()
       .defaults({
-        'vkTinker:Environment': 'production',
+        'vkTinker:environment': 'production',
         'vkTinker:siteRoot': '/',
+        'vkTinker:logging:verbose': false,
         'PORT': 8090,
       });
 
-    const configurationFilePath = `${path.join(configFolder, nconf.get().vkTinker.Environment)}.configuration.json`;
+    const {environment, logging: {verbose}} = nconf.get().vkTinker;
+    const configurationFilePath = `${path.join(configFolder, environment)}.configuration.json`;
+
     if (!fs.existsSync(configurationFilePath)) {
-      console.log(`Unable to find configuration file: '${configurationFilePath}'.`)
+      throw new Error(`Unable to find configuration file: '${configurationFilePath}'.`)
+    } else {
+      if (verbose) {
+        console.log(`Loading configuration file: '${configurationFilePath}'.`)
+      }
     }
 
     nconf
-      .file(`${nconf.get().vkTinker.Environment}-config-file`, {
+      .file(`${environment}-config-file`, {
         file: configurationFilePath,
       })
       .required(

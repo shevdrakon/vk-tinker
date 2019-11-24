@@ -4,13 +4,14 @@
   "description": "МАМИН'S КЛАД VK [https://vk.com/maminsklad2015]",
   "scripts": {
     "clean": "rimraf dist",
-    "start:server": "nodemon --watch ./src/server ./src/server/index.babel.js --vkTinker:Environment development",
+    "start:server": "nodemon --watch ./src/server ./src/server/index.babel.js --vkTinker:environment development",
     "start:client": "webpack-dev-server --config ./webpack/webpack.development.config --mode development --hot --inline --color",
     "build:server": "babel --copy-files src/server -d dist/server && babel --copy-files src/shared -d dist/shared",
     "build:client": "webpack --config ./webpack/webpack.production.config --mode production --progress --color",
     "build": "npm run build:client && npm run build:server",
     "start:server-prod": "cross-env NODE_ENV=production nodemon --watch ./dist/server ./dist/server/index.js --vkTinker:Environment production",
-    "dev:storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook --ci -p 9001 -c .storybook",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
@@ -27,19 +28,31 @@
   },
   "homepage": "https://github.com/SchmerZ/vk-tinker#readme",
   "devDependencies": {
-    "@babel/register": "7.0.0",
-    "@babel/cli": "7.2.3",
-    "@babel/core": "7.2.2",
-    "@babel/plugin-proposal-class-properties": "7.3.0",
-    "@babel/plugin-transform-spread": "7.2.2",
-    "@babel/preset-env": "7.3.1",
-    "@babel/preset-react": "7.0.0",
-    "nodemon": "1.18.10"
+    "@babel/cli": "7.7.0",
+    "@babel/core": "7.7.2",
+    "@babel/plugin-proposal-class-properties": "7.7.0",
+    "@babel/plugin-transform-spread": "7.6.2",
+    "@babel/preset-env": "7.7.1",
+    "@babel/preset-react": "7.7.0",
+    "@babel/preset-typescript": "7.7.2",
+    "@babel/register": "7.7.0",
+    "@types/moment": "2.13.0",
+    "@types/node": "12.12.8",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.4",
+    "nodemon": "1.19.4",
+    "pino-pretty": "3.3.0",
+    "typescript": "3.7.2",
+    "@storybook/react": "5.2.6",
+    "@storybook/addons": "5.2.6",
+    "@storybook/addon-docs": "5.2.6",
+    "@storybook/addon-actions": "5.2.6",
+    "react-is": "16.12.0",
+    "babel-loader": "8.0.6"
   },
   "dependencies": {
-    "@babel/polyfill": "7.2.5",
-    "fast-json-body": "^1.1.0",
-    "fastify": "1.14.1",
-    "nconf": "0.10.0"
+    "fastify": "2.10.0",
+    "nconf": "0.10.0",
+    "pino": "5.13.6"
   }
 }

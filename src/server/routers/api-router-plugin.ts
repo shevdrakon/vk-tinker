@@ -1,9 +1,7 @@
 import testRouter from '../api/test/messages-router'
 
-const apiRouter = (app, options, next) => {
+const apiRouterPlugin = async (app) => {
   app.register(testRouter, {prefix: '/test'});
-
-  next();
 }
 
-export default apiRouter;
+export default apiRouterPlugin;

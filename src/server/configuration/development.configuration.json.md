@@ -1,6 +1,6 @@
 ```json
 {
-  "mcBird": {
+  "vkTinker": {
     "assetsRootUrl": "http://localhost:3002/",
     "siteRoot": "/",
     "urls": {

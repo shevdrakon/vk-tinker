@@ -3,7 +3,7 @@
 // import routerActionExecutor from '../../lib/router-action-executor'
 // import Controller from './messages-controller'
 //
-// const egacy = ({config, wsServer}) => {
+// const legacy = ({config, wsServer}) => {
 //   const router = express.Router();
 //
 //   router.get('/', (req, resp, next) => {

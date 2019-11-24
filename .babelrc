@@ -1,17 +1,16 @@
 {
   "presets": [
     [
-      "@babel/env",
+      "@babel/preset-env",
       {
         "targets": {
-          "node": "8"
+          "node": "8.14.0"
         }
       }
     ],
-    "@babel/react"
+    "@babel/preset-typescript"
   ],
   "plugins": [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-transform-spread"
+    "@babel/plugin-proposal-class-properties"
   ]
 }

@@ -14,6 +14,7 @@
   "include": [
     "./src/**/*.ts",
     "./src/**/*.tsx",
-    "./types/global.d.ts"
+    "./types/global.d.ts",
+    "./types/fastify.d.ts"
   ]
 }

@@ -1,0 +1,14 @@
+@import "../../styles/index";
+
+.button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 36px;
+  color: $material-kit-purple-dark;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 300;
+  font-family: Roboto,Helvetica,Arial,sans-serif;
+}

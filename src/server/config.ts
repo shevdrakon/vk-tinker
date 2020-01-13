@@ -6,7 +6,9 @@ export enum Environment {
   development = 'development'
 }
 
-interface Config {
+interface IConfig {
+  vkApiVersion: string;
+  sessionCookieSecret: string;
   environment: Environment;
   assetsRootUrl: string;
   siteRoot: string;
@@ -19,7 +21,7 @@ interface Config {
 
 const appConfig = appConfiguration(path.resolve(__dirname, 'configuration'));
 
-const config: Config = {
+const config: IConfig = {
   ...appConfig.get().vkTinker,
   port: appConfig.get('PORT'),
 }

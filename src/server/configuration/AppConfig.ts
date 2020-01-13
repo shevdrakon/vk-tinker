@@ -3,7 +3,7 @@ import nconf from 'nconf';
 import fs from 'fs';
 
 class AppConfig {
-  constructor(configFolder = '') {
+  constructor(configFolder: string = '') {
     nconf
       .env()
       .argv()
@@ -30,7 +30,10 @@ class AppConfig {
         file: configurationFilePath,
       })
       .required(
-        ['vkTinker:siteRoot']
+        [
+          'vkTinker:siteRoot',
+          'vkTinker:sessionCookieSecret',
+        ]
       );
   }
 
@@ -45,7 +48,7 @@ class AppConfig {
 
 let instance;
 
-const getConfig = (configFolder) => {
+const getConfig = (configFolder: string) => {
   if (!instance) {
     instance = new AppConfig(configFolder);
   }

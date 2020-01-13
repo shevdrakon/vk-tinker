@@ -1,3 +1,7 @@
+import {FastifyInstance} from 'fastify';
+
+import validateAuthorizationHook from '../../hooks/validate-authorization-hook';
+
 // import express from 'express'
 //
 // import routerActionExecutor from '../../lib/router-action-executor'
@@ -19,10 +23,12 @@
 //   return router;
 // }
 
-async function routes(app) {
+const testRouter = async (app: FastifyInstance) => {
+  app.addHook('preValidation', validateAuthorizationHook);
+
   app.get('/', async (request, reply) => {
     return {hello: 'world'}
   })
 }
 
-export default routes;
+export default testRouter;

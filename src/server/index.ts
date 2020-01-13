@@ -1,16 +1,16 @@
-import fastify from 'fastify'
+import fastify from 'fastify';
 
-import logger from './lib/logger'
+import logger from './lib/logger';
 import config, {Environment} from './config';
-import appRoutingPlugin from './routers/app-routing-plugin';
+import appRoutingPlugin from './plugins/app-routing-plugin';
+
+logger.info(`Configuration (${config.environment}) loaded:`);
+logger.info(config);
 
 const app = fastify({
   logger,
   disableRequestLogging: false,
 });
-
-logger.info(`Configuration (${config.environment}) loaded:`);
-logger.info(config);
 
 app.register(appRoutingPlugin);
 

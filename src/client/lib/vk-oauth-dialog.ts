@@ -40,8 +40,8 @@ const openOAuthDialog = (options: IOAuthDialogOptions) => {
           ',left=' + left +
           ',top=' + top
         );
-
-      this.active = window.open(options.url, 'vk_openapi', features);
+      //this.active =
+      window.open(options.url, 'vk_openapi', features);
     }
   }
 

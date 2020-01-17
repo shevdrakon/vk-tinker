@@ -10,6 +10,7 @@
     "build:client": "webpack --config ./webpack/webpack.production.config --mode production --progress --color",
     "build": "npm run build:client && npm run build:server",
     "start:server-prod": "cross-env NODE_ENV=production nodemon --watch ./dist/server ./dist/server/index.js --vkTinker:Environment production",
+    "tunnel": "lt -h  http://localtunnel.me --subdomain vktinker --port 8090",
     "storybook": "start-storybook --ci -p 9002 -c .storybook",
     "tsc": "tsc"
   },
@@ -28,6 +29,12 @@
   },
   "homepage": "https://github.com/SchmerZ/vk-tinker#readme",
   "devDependencies": {
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-server": "3.10.1",
+    "html-webpack-plugin": "4.0.0-beta.11",
+    "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "react-dev-utils": "10.0.0",
     "@babel/cli": "7.8.0",
     "@babel/core": "7.8.0",
     "@babel/plugin-proposal-class-properties": "7.8.0",
@@ -53,7 +60,7 @@
     "sass-loader": "8.0.1",
     "style-loader": "1.1.2",
     "typescript": "3.7.4",
-    "typings-for-css-modules-loader": "1.7.0"
+    "localtunnel": "2.0.0"
   },
   "dependencies": {
     "fastify": "2.11.0",

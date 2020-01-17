@@ -1,11 +1,12 @@
-import React from "react";
-import LoginModal from "./LoginModal";
-import styles from './LoginPage.module.scss';
+import React from 'react';
+import LoginModal from './LoginModal';
+
+const styles = require('./LoginPage.module.scss');
 
 export const LoginPage = (props) => {
   return (
     <div className={styles.login_page}>
-      <LoginModal/>
+      <LoginModal />
     </div>
   )
 }

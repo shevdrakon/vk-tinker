@@ -9,9 +9,8 @@ class AppConfig {
       .argv()
       .defaults({
         'vkTinker:environment': 'production',
-        'vkTinker:siteRoot': '/',
+        'vkTinker:port': 9000,
         'vkTinker:logging:verbose': false,
-        'PORT': 8090,
       });
 
     const {environment, logging: {verbose}} = nconf.get().vkTinker;
@@ -31,7 +30,6 @@ class AppConfig {
       })
       .required(
         [
-          'vkTinker:siteRoot',
           'vkTinker:sessionCookieSecret',
         ]
       );

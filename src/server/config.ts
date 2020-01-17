@@ -7,23 +7,27 @@ export enum Environment {
 }
 
 interface IConfig {
-  vkApiVersion: string;
-  sessionCookieSecret: string;
   environment: Environment;
-  assetsRootUrl: string;
-  siteRoot: string;
-  windowTitle: string;
+  sessionCookieSecret: string;
+  port: number;
+  vkApi: {
+    applicationId: number;
+    version: number;
+  };
+  vkGroup: {
+    id: number;
+    title: string;
+    url: string;
+  },
   logging: {
     verbose: boolean;
   }
-  port: number;
 }
 
 const appConfig = appConfiguration(path.resolve(__dirname, 'configuration'));
 
 const config: IConfig = {
   ...appConfig.get().vkTinker,
-  port: appConfig.get('PORT'),
 }
 
 export default config;

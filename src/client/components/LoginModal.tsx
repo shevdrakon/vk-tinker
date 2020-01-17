@@ -1,5 +1,6 @@
 import React from "react";
-import classNames from './LoginModal.module.scss';
+
+const classNames = require('./LoginModal.module.scss');
 
 import Button from "./Button";
 

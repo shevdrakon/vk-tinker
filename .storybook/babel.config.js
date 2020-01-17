@@ -1,19 +1,19 @@
 const config = {
   babelrc: false,
   cacheDirectory: true,
-  "presets": [
+  presets: [
     [
       "@babel/preset-env",
       {
-        "modules": false
+        modules: false,
       }
     ],
     "@babel/preset-react",
     "@babel/preset-typescript"
   ],
-  "plugins": [
+  plugins: [
     "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
   ]
 }
 

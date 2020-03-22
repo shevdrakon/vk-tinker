@@ -41,7 +41,7 @@ const Root = () => {
 
   return (
     <>
-      <LoginPage/>
+      <LoginPage />
       {/*<div>Hello!</div>*/}
       {/*<div id="vk_auth"></div>*/}
     </>

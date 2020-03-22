@@ -60,7 +60,7 @@ class VkApiService {
     const p = {
       ...payload,
       access_token: this.options.accessToken,
-      v: config.vkApiVersion,
+      v: config.vkApi.version,
     };
 
     const query = qs.stringify(p, {skipNulls: true});

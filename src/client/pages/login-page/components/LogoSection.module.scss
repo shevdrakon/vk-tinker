@@ -1,0 +1,34 @@
+.logo-section {
+  &__container {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 36px;
+    line-height: 47px;
+    font-weight: 400;
+    color: #f4f4f4;
+    margin: 0;
+  }
+
+  &__context {
+    align-self: center;
+  }
+
+  &__context-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  &__context-copy {
+    font-size: 18px;
+    font-weight: 300;
+    color: #f4f4f4;
+    margin: 0;
+  }
+}

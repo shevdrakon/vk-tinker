@@ -1,0 +1,93 @@
+@import '../../../styles/core/variables/media';
+
+.canvas {
+  height: 100vh;
+  position: relative;
+  width: 100%;
+
+  @include respond-above(tablet) {
+    background: #f4f4f4 50%;
+    background-size: cover;
+  }
+
+  &__background {
+    background: rgba(0, 0, 0, .5);
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &__grid {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    background: white;
+
+    @include respond-above(tablet) {
+      background: transparent;
+
+      &::before,
+      &::after {
+        content: " ";
+        display: block;
+        flex-grow: 1;
+        height: 16px;
+        min-height: 16px;
+      }
+    }
+  }
+
+  &__logo-section {
+    display: none;
+    position: relative;
+    left: 8.583%;
+    padding: 0 24px;
+
+    @include respond-above(desktop) {
+      display: initial;
+    }
+  }
+
+  &--mountains {
+    background-image: url('../../static/img/canvas/mountains.jpg');
+  }
+
+  &--kirovsk {
+    background-image: url('../../static/img/canvas/kirovsk.png');
+  }
+
+  &--clouds {
+    background-image: url('../../static/img/canvas/clouds.jpg');
+  }
+
+  &--mountain-plane {
+    background-image: url('../../static/img/canvas/mountain-plane.jpg');
+  }
+
+  &--ocean {
+    background-image: url('../../static/img/canvas/ocean.jpg');
+  }
+
+  &--snow-road {
+    background-image: url('../../static/img/canvas/snow-road.jpg');
+  }
+
+  &--sunny-mountain {
+    background-image: url('../../static/img/canvas/sunny-mountain.jpg');
+  }
+
+  &--waves {
+    background-image: url('../../static/img/canvas/waves.jpg');
+  }
+
+  &--mountain-lake {
+    background-image: url('../../static/img/canvas/mountain-lake.jpg');
+  }
+
+  &--stars-sky {
+    background-image: url('../../static/img/canvas/stars-sky.jpg');
+  }
+}

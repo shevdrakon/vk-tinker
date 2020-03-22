@@ -1,0 +1,69 @@
+@import "../../../../styles/core/variables/media";
+
+.login-form {
+  position: relative;
+  padding: 0 24px;
+  box-sizing: initial;
+
+  @include respond-above(tablet) {
+    width: 65.66667%;
+    margin-left: 0;
+    margin-right: 3%;
+    left: 17.16667%;
+    padding: 0;
+  }
+
+  @include respond-above(desktop) {
+    left: 42.917%;
+    width: 48.85%;
+    padding: 0 24px;
+  }
+
+  @include respond-above(xl) {
+    left: 51.5%;
+    width: 39.8%;
+  }
+
+  &__card-layout {
+    padding: 24px 0 40px;
+    background: #fff;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative;
+
+    @include respond-above(tablet) {
+      box-sizing: border-box;
+      padding: 24px 56px 40px;
+    }
+
+    @include respond-above(desktop) {
+      padding: 40px 56px;
+    }
+  }
+
+  &__context {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #d3d3d3;
+    font-weight: 500;
+
+    @include respond-above(desktop) {
+      display: none;
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+  }
+
+  &__label {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+}

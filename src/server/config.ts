@@ -28,6 +28,6 @@ const appConfig = appConfiguration(path.resolve(__dirname, 'configuration'));
 
 const config: IConfig = {
   ...appConfig.get().vkTinker,
-}
+};
 
 export default config;

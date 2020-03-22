@@ -1,14 +1,17 @@
-import React from "react";
+import React from 'react';
+import bemFactory from '../lib/bem-factory';
 
-const classNames = require('./Button.module.scss');
+const styles = require('./Button.module.scss');
 
 const Button = (props) => {
-  const {text, onClick} = props
+  const {text, onClick} = props;
+  const {block} = bemFactory('button', styles);
+
   return (
-    <div className={classNames.button}>
+    <div className={block()}>
       {text}
     </div>
   )
-}
+};
 
 export default Button

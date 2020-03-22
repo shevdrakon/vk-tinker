@@ -43,7 +43,7 @@ const openOAuthDialog = (options: IOAuthDialogOptions) => {
       //this.active =
       window.open(options.url, 'vk_openapi', features);
     }
-  }
+  };
 
   const query = qs.stringify({
     client_id: applicationId,
@@ -61,6 +61,6 @@ const openOAuthDialog = (options: IOAuthDialogOptions) => {
     height: 200,
     url,
   });
-}
+};
 
 export default openOAuthDialog;

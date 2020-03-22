@@ -1,0 +1,36 @@
+$sizes: (
+  phone: 376px,
+  tablet: 768px,
+  desktop: 992px,
+  xl: 1280px,
+);
+
+@function calc-width ($span) {
+  @if ($span) {
+    @return ($span / 12) * 100%;
+  } @else {
+    @return 100%;
+  }
+}
+
+@mixin respond-above($size) {
+  @if map-has-key($sizes, $size) {
+    $value: map-get($sizes, $size);
+
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid size: #{$size}.';
+  }
+}
+
+@mixin generate-col-sizes($prefix, $size) {
+  @for $i from 1 through 12 {
+    &__#{$prefix}#{$i} {
+      @include respond-above($size) {
+        width: calc-width($i);
+      }
+    }
+  }
+}

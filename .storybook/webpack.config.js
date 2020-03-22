@@ -1,5 +1,5 @@
 const path = require('path');
-const babelOptions = require('./babel.config');
+const babelOptions = require('../src/client/babel.config');
 
 module.exports = ({config}) => {
   config.resolve.extensions.push('.ts', '.tsx');
@@ -23,7 +23,7 @@ module.exports = ({config}) => {
           loader: 'css-loader',
           options: {
             modules: {
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              localIdentName: '[local]--[hash:base64:5]',
             },
             importLoaders: 1,
           },

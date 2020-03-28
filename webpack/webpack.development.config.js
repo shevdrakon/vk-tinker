@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
@@ -33,6 +35,10 @@ const env = getClientEnvironment(config, publicUrl);
 //   filename: "./index.html"
 // });
 
+const imageInlineSizeLimit = parseInt(
+  process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
+);
+
 module.exports = {
   devtool: 'cheap-module-source-map',
 
@@ -49,6 +55,8 @@ module.exports = {
   },
 
   plugins: [
+    // new BundleAnalyzerPlugin(),
+
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin(
       {
@@ -97,21 +105,21 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
 
-  optimization: {
-    namedModules: true,
-    noEmitOnErrors: true,
-    concatenateModules: true,
-    minimize: false,
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules\\[*lodash*|react\-dom\-factories]/,
-          name: 'vendors',
-          chunks: 'initial'
-        }
-      }
-    }
-  },
+  // optimization: {
+  //   namedModules: true,
+  //   noEmitOnErrors: true,
+  //   concatenateModules: true,
+  //   minimize: false,
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendors: {
+  //         test: /[\\/]node_modules\\[*lodash*|react\-dom\-factories]/,
+  //         name: 'vendors',
+  //         chunks: 'initial'
+  //       }
+  //     }
+  //   }
+  // },
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
@@ -147,7 +155,7 @@ module.exports = {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: require.resolve('url-loader'),
         options: {
-          // limit: imageInlineSizeLimit,
+          limit: imageInlineSizeLimit,
           name: 'static/media/[name].[hash:8].[ext]',
         },
       },

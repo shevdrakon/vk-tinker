@@ -1,8 +1,8 @@
 import qs from 'qs'
 import fetch from 'isomorphic-fetch';
 
-import config from '../config';
-import logger from '../lib/logger';
+import config from '../../config';
+import logger from '../../lib/logger';
 import VkApiRequestError from './vk-api-request-error';
 
 const vkApiBaseUrl = `https://api.vk.com/method`;

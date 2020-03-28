@@ -1,0 +1,11 @@
+.vk-sign-in-button {
+  width: 100%;
+  padding: 15px !important;
+  background-color: #4a76a8 !important;
+  border-radius: 100px !important;
+
+  &__text {
+    padding-left: 12px;
+    text-transform: none !important;
+  }
+}

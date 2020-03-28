@@ -66,4 +66,14 @@
     letter-spacing: 0;
     text-transform: none;
   }
+
+  &__controls {
+    margin-top: 26px;
+  }
+
+  &__buttons-section {
+    padding-top: 34px;
+    display: flex;
+    flex-direction: row-reverse;
+  }
 }

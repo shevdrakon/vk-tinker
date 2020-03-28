@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Root from './Root';
+import Entry from './Entry';
 import '../styles/globals.scss';
 
 ReactDOM.render(
-  <Root />,
+  <Entry />,
   document.getElementById('root')
 );

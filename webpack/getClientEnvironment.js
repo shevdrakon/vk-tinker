@@ -10,8 +10,8 @@ const getClientEnvironment = (config, publicUrl) => ({
   // images into the `src` and `import` them in code to get their paths.
   PUBLIC_URL: publicUrl,
 
-  // Title
   TITLE: config.vkTinker.vkGroup.title,
+  APPLICATION_ID: config.vkTinker.vkApi.applicationId,
 });
 
 module.exports = getClientEnvironment;

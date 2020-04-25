@@ -21,9 +21,9 @@ const appRoutingPlugin: Plugin<any, any, any, any> = (app, options, next) => {
   });
 
   app.addHook('preValidation', authenticationHook);
-  app.register(apiRouterPlugin, {prefix: '/api'})
+  app.register(apiRouterPlugin, {prefix: '/api'});
 
   next();
-}
+};
 
 export default appRoutingPlugin;

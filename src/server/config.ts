@@ -12,6 +12,8 @@ interface IConfig {
   port: number;
   vkApi: {
     applicationId: number;
+    application_secret: string;
+    application_token: string;
     version: number;
   };
   vkGroup: {

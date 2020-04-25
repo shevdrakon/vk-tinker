@@ -1,4 +1,5 @@
 import fastify from 'fastify';
+import cors from 'fastify-cors';
 
 import logger from './lib/logger';
 import config, {Environment} from './config';
@@ -12,6 +13,7 @@ const app = fastify({
   disableRequestLogging: false,
 });
 
+app.register(cors, {});
 app.register(appRoutingPlugin);
 
 if (config.environment === Environment.development) {

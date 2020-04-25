@@ -9,6 +9,7 @@ const getClientEnvironment = (config, publicUrl) => ({
   // This should only be used as an escape hatch. Normally you would put
   // images into the `src` and `import` them in code to get their paths.
   PUBLIC_URL: publicUrl,
+  API_BASE_URL: config.vkTinker.apiBaseUrl,
 
   TITLE: config.vkTinker.vkGroup.title,
   APPLICATION_ID: config.vkTinker.vkApi.applicationId,

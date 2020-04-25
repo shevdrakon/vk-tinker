@@ -1,34 +1,40 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as sessionActions from '../../../store/session/sessionActions';
+import {SELECTORS} from '../../../store/session/sessionSelectors';
 
-import VkAuth from '../../../lib/VkAuth';
+import {authorizeWithLimitedAccess} from '../../../store/session/sessionActions';
+
 import {VkIcon} from '../../../components/icons';
 import Button from '../../../components/Buttons/Button';
 
+import {IVkSignInButtonDispatchProps, IVkSignInButtonProps, IVkSignInButtonStateProps} from './VkSignInButton.types';
+
 import styles from './VkSIgnInButton.module.scss';
 import bemFactory from '../../../lib/bem-factory';
+import {IStore} from '../../../store/types/store.types';
+import {LoginState} from '../../../store/session/session.types';
 
 const {block, element} = bemFactory('vk-sign-in-button', styles);
 
-const VkSignInButton = (props) => {
-  const handleClick = async () => {
-    //const applicationId = 7277411; // site
-    const applicationId = 5737599; // standalone
-    const loginStatus = await new VkAuth({applicationId}).loginAsUser();
-    props.notAuthorized();
-  };
+const VkSignInButton = (props: IVkSignInButtonProps) => {
+  const {loginState, authorizeWithLimitedAccess} = props;
+  const isProcessing = loginState === LoginState.processing;
 
-  return <Button className={block()} onClick={handleClick}>
+  return <Button className={block()} onClick={authorizeWithLimitedAccess}>
     <VkIcon size={24} />
     <span className={element('text')}>Continue with limited access</span>
   </Button>;
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators(sessionActions, dispatch);
+const mapStateToProps = (state: IStore): IVkSignInButtonStateProps => {
+  return {
+    loginState: SELECTORS.getLoginState(state),
+  };
+};
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(VkSignInButton);
+const mapDispatchToProps = (dispatch): IVkSignInButtonDispatchProps => bindActionCreators({
+  authorizeWithLimitedAccess,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(VkSignInButton);

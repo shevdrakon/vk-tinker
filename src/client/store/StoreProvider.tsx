@@ -1,20 +1,27 @@
 import React from 'react';
-import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import thunk from 'redux-thunk';
+import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
 
-import {composeWithDevTools} from 'redux-devtools-extension/developmentOnly';
-
-import rootReducer from './rootReducer';
+import createRootReducer from './createRootReducer';
+import createApiServices from '../api/createApiServices';
 
 interface IStoreProviderProps {
   children?: React.ReactNode;
 }
 
 const StoreProvider = (props: IStoreProviderProps) => {
-  const store = createStore(rootReducer, composeWithDevTools(
-    applyMiddleware(thunk),
-  ));
+  const apiServices = createApiServices(window.appConfig);
+  const middleware = getDefaultMiddleware({
+    thunk: {
+      extraArgument: {api: apiServices}
+    }
+  });
+
+  const store = configureStore({
+    devTools: process.env.NODE_ENV !== 'production',
+    reducer: createRootReducer(),
+    middleware,
+  });
 
   return <Provider store={store}>
     {props.children}

@@ -1,4 +1,4 @@
-import VkApiService from '../vk-api-service';
+import VkApiService from '../VkApiService';
 import {UserFields} from './users.types';
 
 class VkUserService extends VkApiService {

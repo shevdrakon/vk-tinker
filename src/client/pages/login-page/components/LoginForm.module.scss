@@ -1,6 +1,6 @@
 @import "../../../../styles/core/variables/media";
 
-.login-form {
+.auth-form {
   position: relative;
   padding: 0 24px;
   box-sizing: initial;
@@ -72,7 +72,7 @@
   }
 
   &__buttons-section {
-    padding-top: 34px;
+    padding-top: 25px;
     display: flex;
     flex-direction: row-reverse;
   }

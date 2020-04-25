@@ -1,18 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+
+import {login} from '../../../store/session/sessionActions';
 
 import {PolaroidIcon} from '../../../components/icons';
 import Separator from '../../../components/Separators/Separator';
-import Button from '../../../components/Buttons/Button';
 import AccessTokenTextField from './AccessTokenTextField';
-
 import VkSignInButton from './VkSignInButton';
+import ContinueButton from './ContinueButton';
 
 import styles from './LoginForm.module.scss';
 import bemFactory from '../../../lib/bem-factory';
 
-const {block, element} = bemFactory('login-form', styles);
+const {block, element} = bemFactory('auth-form', styles);
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const [accessToken, setAccessToken] = useState('');
+  const history = useHistory();
+
+  const handleContinueButtonClick = () => {
+    dispatch(login({accessToken, history}));
+  }
+
   return <section className={block()}>
     <section className={element('card-layout')}>
       <div className={element('context')}>
@@ -24,9 +35,9 @@ const LoginForm = () => {
           Sign In
         </h1>
         <section className={element('controls')}>
-          <AccessTokenTextField />
+          <AccessTokenTextField onChange={setAccessToken} />
           <section className={element('buttons-section')}>
-            <Button>Continue</Button>
+            <ContinueButton onClick={handleContinueButtonClick} />
           </section>
           <Separator value="Or" />
           <VkSignInButton />

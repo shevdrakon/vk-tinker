@@ -4,6 +4,8 @@
 import qs from 'querystring';
 import fetch from 'isomorphic-fetch';
 
+import {IVkLoginStatus} from '../../server/vk/vk-api/openapi.types';
+
 enum display {
   page = 'page', // форма авторизации в отдельном окне;
   popup = 'popup',// всплывающее окно;
@@ -21,20 +23,12 @@ enum scopes {
   groups = 1 << 18,
 }
 
-interface ILoginStatus {
-  auth: boolean;
-  access_token: string;
-  user: {
-    id: number;
-    domain: string;
-    href: string;
-    first_name: string;
-    last_name: string;
-    nickname: string;
-  };
+export interface IVkAuthService {
+  loginAsStandalone: () => void;
+  loginAsUser: () => Promise<IVkLoginStatus>;
 }
 
-class VkAuth {
+class VkAuth implements IVkAuthService {
   private readonly applicationId: number;
   private readonly scopes: number;
 
@@ -82,7 +76,7 @@ class VkAuth {
     });
   }
 
-  async loginAsUser(): Promise<ILoginStatus> {
+  async loginAsUser(): Promise<IVkLoginStatus> {
     const query = qs.stringify({
       client_id: this.applicationId,
       redirect_uri: 'close.html',
@@ -106,8 +100,8 @@ class VkAuth {
     return await this.getLoginStatus();
   }
 
-  // Get current login status from vk.com (async)
-  async getLoginStatus(): Promise<ILoginStatus> {
+  // Get current auth status from vk.com (async)
+  async getLoginStatus(): Promise<IVkLoginStatus> {
     const query = qs.stringify({
       aid: this.applicationId,
       oauth: 1,
@@ -116,16 +110,16 @@ class VkAuth {
       new: 1,
     });
 
-    //  var url = VK._domain.login + '?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname) + '&do_logout=1&token=' + VK._session.sid;
+    //  var url = VK._domain.auth + '?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname) + '&do_logout=1&token=' + VK._session.sid;
     const url = `https://login.vk.com?${query}`;
     const response = await fetch(url, {credentials: 'include'});
 
     if (response.status !== 200)
       throw new Error(`Unable to get login status from vk.`);
 
-    const {auth, access_token, user} = await response.json();
+    const {auth, access_token, user, expire, time} = await response.json();
 
-    return {auth, access_token, user};
+    return {auth, access_token, user, expire, time};
   }
 
   private waitForPopupClosed(active: Window): Promise<void> {

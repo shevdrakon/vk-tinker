@@ -6,6 +6,7 @@ html * {
 body {
   font-size: 1rem;
   margin: 0;
+  background-color: #F8F8F8;
 }
 
 body,
@@ -118,7 +119,7 @@ a {
 
   &:hover,
   &:focus {
-    color: darken($link-color, 5%);
+    //color: darken($link-color, 5%);
     text-decoration: none;
   }
 }

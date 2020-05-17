@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 const createGateway = ({baseUrl}) => {
   const errorHandler = (url: string): (reason: any) => Response => {
     return error => {
+      debugger
       // showToastr(error.status, url, undefined);
       throw error;
     };
@@ -52,6 +53,7 @@ const buildFetchOptions = (method: string, data: unknown, headers: { [key: strin
 
   return {
     method,
+    credentials: 'include',
     headers: {
       ['accept']: 'application/json',
       ...headers,

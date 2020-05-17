@@ -2,6 +2,7 @@ import fastify from 'fastify';
 import cors from 'fastify-cors';
 
 import logger from './lib/logger';
+import errorHandler from './fastifyHooks/errorHandler';
 import config, {Environment} from './config';
 import appRoutingPlugin from './plugins/app-routing-plugin';
 
@@ -13,7 +14,11 @@ const app = fastify({
   disableRequestLogging: false,
 });
 
-app.register(cors, {});
+app.setErrorHandler(errorHandler);
+app.register(cors, {
+  origin: true,
+  credentials: true,
+});
 app.register(appRoutingPlugin);
 
 if (config.environment === Environment.development) {

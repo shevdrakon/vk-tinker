@@ -7,6 +7,7 @@ declare interface Dictionary<V> {
 declare interface IAppConfig {
   applicationId: number;
   baseUrl: string;
+  vkGroupUrl: string;
 }
 
 declare interface Window {

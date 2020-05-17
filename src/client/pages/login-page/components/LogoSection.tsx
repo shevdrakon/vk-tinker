@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-import {PolaroidIcon} from '../../../components/icons';
+import {PolaroidIcon} from '../../../components/Icons';
 
 import styles from './LogoSection.module.scss';
 import bemFactory from '../../../lib/bem-factory';

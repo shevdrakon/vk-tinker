@@ -1,0 +1,13 @@
+.header-actions {
+  margin: 0;
+  list-style: none;
+
+  &__item {
+    display: inline-block;
+  }
+
+  &__link {
+    min-width: auto !important;
+    padding: 15px !important;
+  }
+}

@@ -1,0 +1,10 @@
+.selector {
+
+  &__icon {
+    opacity: .45;
+
+    &--open {
+      opacity: .9;
+    }
+  }
+}

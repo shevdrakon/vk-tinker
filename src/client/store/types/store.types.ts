@@ -1,12 +1,7 @@
-import {ISessionStore} from '../session/session.types';
-import {IApiServices} from '../../api/types';
+import {ISessionState} from '../session/session.types';
+import {IConfigState} from '../config/config.types';
 
-export interface IStore {
-  session: ISessionStore;
-}
-
-export interface ThunkConfig {
-  extra: {
-    api: IApiServices;
-  }
+export interface IAppState {
+  config: IConfigState;
+  session: ISessionState;
 }

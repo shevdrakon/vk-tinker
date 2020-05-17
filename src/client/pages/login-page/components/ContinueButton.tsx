@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 
 import Button from '../../../components/Buttons/Button';
 import {LoginState} from '../../../store/session/session.types';
-import CircularProgress from '../../../components/progress/CircularProgress';
+import CircularProgress from '../../../components/Progress/CircularProgress';
 
 import {IStore} from '../../../store/types/store.types';
 

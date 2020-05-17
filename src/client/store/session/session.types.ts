@@ -5,7 +5,7 @@ export enum LoginState {
   error = 'error',
 }
 
-export interface ISessionStore {
+export interface ISessionState {
   loginState: LoginState;
   accessTokenError: string;
 }

@@ -100,7 +100,7 @@ class VkAuth implements IVkAuthService {
     return await this.getLoginStatus();
   }
 
-  // Get current auth status from vk.com (async)
+  // Get current authorization status from vk.com (async)
   async getLoginStatus(): Promise<IVkLoginStatus> {
     const query = qs.stringify({
       aid: this.applicationId,
@@ -110,7 +110,7 @@ class VkAuth implements IVkAuthService {
       new: 1,
     });
 
-    //  var url = VK._domain.auth + '?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname) + '&do_logout=1&token=' + VK._session.sid;
+    //  var url = VK._domain.authorization + '?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname) + '&do_logout=1&token=' + VK._session.sid;
     const url = `https://login.vk.com?${query}`;
     const response = await fetch(url, {credentials: 'include'});
 

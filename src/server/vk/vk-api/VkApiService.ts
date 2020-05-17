@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 
 import config from '../../config';
 import logger from '../../lib/logger';
-import VkApiRequestError from './VkApiRequestError';
+import VkApiRequestError from '../../errors/VkApiRequestError';
 
 const vkApiBaseUrl = `https://api.vk.com/method`;
 

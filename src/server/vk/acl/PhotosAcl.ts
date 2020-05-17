@@ -1,4 +1,4 @@
-import {IAclPermission, TokenType} from './acl.types';
+import {IAclPermission, TokenTypes} from './acl.types';
 
 export enum PhotosPermissions {
   get = 1 << 0,
@@ -21,78 +21,78 @@ export const photosAcl: Array<IAclPermission> = [
     name: 'get',
     permission: PhotosPermissions.get,
     url: 'https://vk.com/dev/photos.get',
-    accessLevel: TokenType.user,
+    accessLevel: TokenTypes.User,
   },
   {
     name: 'getById',
     permission: PhotosPermissions.getById,
     url: 'https://vk.com/dev/photos.getById',
-    accessLevel: TokenType.user,
+    accessLevel: TokenTypes.User,
   },
   {
     name: 'getAll',
     permission: PhotosPermissions.getAll,
     url: 'https://vk.com/dev/photos.getAll',
-    accessLevel: TokenType.user,
+    accessLevel: TokenTypes.User,
   },
   {
     name: 'delete',
     permission: PhotosPermissions.delete,
     url: 'https://vk.com/dev/photos.delete',
-    accessLevel: TokenType.standalone,
+    accessLevel: TokenTypes.Standalone,
   },
   {
     name: 'edit',
     permission: PhotosPermissions.edit,
     url: 'https://vk.com/dev/photos.edit',
-    accessLevel: TokenType.user,
+    accessLevel: TokenTypes.User,
   },
   {
     name: 'getAlbums',
     permission: PhotosPermissions.getAlbums,
     url: 'https://vk.com/dev/photos.getAlbums',
-    accessLevel: TokenType.user,
+    accessLevel: TokenTypes.User,
   },
   {
     name: 'editAlbum',
     permission: PhotosPermissions.editAlbum,
     url: 'https://vk.com/dev/photos.editAlbum',
-    accessLevel: TokenType.user,
+    accessLevel: TokenTypes.User,
   },
   {
     name: 'getAllComments',
     permission: PhotosPermissions.getAllComments,
     url: 'https://vk.com/dev/photos.getAllComments',
-    accessLevel: TokenType.user,
+    accessLevel: TokenTypes.User,
   },
   {
     name: 'getComments',
     permission: PhotosPermissions.getComments,
     url: 'https://vk.com/dev/photos.getComments',
-    accessLevel: TokenType.user,
+    accessLevel: TokenTypes.User,
   },
   {
     name: 'createComment',
     permission: PhotosPermissions.createComment,
     url: 'https://vk.com/dev/photos.createComment',
-    accessLevel: TokenType.standalone,
+    accessLevel: TokenTypes.Standalone,
   },
   {
     name: 'deleteComment',
     permission: PhotosPermissions.deleteComment,
     url: 'https://vk.com/dev/photos.deleteComment',
-    accessLevel: TokenType.standalone,
+    accessLevel: TokenTypes.Standalone,
   },
   {
     name: 'editComment',
     permission: PhotosPermissions.editComment,
     url: 'https://vk.com/dev/photos.editComment',
-    accessLevel: TokenType.standalone,
+    accessLevel: TokenTypes.Standalone,
   },
   {
     name: 'move',
     permission: PhotosPermissions.move,
     url: 'https://vk.com/dev/photos.move',
-    accessLevel: TokenType.user,
+    accessLevel: TokenTypes.User,
   },
 ];

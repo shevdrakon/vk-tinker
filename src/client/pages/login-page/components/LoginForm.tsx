@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
-import {login} from '../../../store/session/sessionActions';
+import {authorizeAsStandalone} from '../../../store/session/sessionActions';
 
-import {PolaroidIcon} from '../../../components/icons';
+import {PolaroidIcon} from '../../../components/Icons';
 import Separator from '../../../components/Separators/Separator';
 import AccessTokenTextField from './AccessTokenTextField';
 import VkSignInButton from './VkSignInButton';
@@ -12,16 +11,19 @@ import ContinueButton from './ContinueButton';
 
 import styles from './LoginForm.module.scss';
 import bemFactory from '../../../lib/bem-factory';
+import useBindActionCreators from '../../../hooks/useBindActionCreators';
 
 const {block, element} = bemFactory('auth-form', styles);
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
+  const actions = useBindActionCreators({authorizeAsStandalone});
   const [accessToken, setAccessToken] = useState('');
   const history = useHistory();
 
   const handleContinueButtonClick = () => {
-    dispatch(login({accessToken, history}));
+    const payload = {accessToken, history};
+
+    actions.authorizeAsStandalone(payload);
   }
 
   return <section className={block()}>

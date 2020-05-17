@@ -1,0 +1,50 @@
+@import '../../../../styles/core/variables/media';
+
+.app-header {
+  //padding: 0.625rem 0;
+  //margin-bottom: 20px;
+
+  &__toolbar {
+    flex-wrap: nowrap;
+    flex: 1;
+    width: 100%;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include respond-above(tablet) {
+      max-width: 720px;
+    }
+
+    @include respond-above(desktop) {
+      max-width: 960px;
+    }
+
+    @include respond-above(xl) {
+      max-width: 1240px;
+    }
+  }
+
+  &__title-container {
+  }
+
+  &__actions-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    color: white !important;
+    font-size: 18px !important;
+    text-transform: none !important;
+
+    &:hover,
+    &:focus {
+      background: transparent !important;
+    }
+  }
+
+  &__drawer-paper {
+    width: 260px;
+  }
+}

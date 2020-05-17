@@ -1,15 +1,14 @@
 import React from 'react';
-import {Button as MuiButton} from '@material-ui/core';
+import MuiButton from '@material-ui/core/Button';
 
-interface IButtonProps {
-  children: React.ReactNode | React.ReactNodeArray;
-  color?: 'primary' | 'secondary' | 'default';
-  variant?: 'text' | 'outlined' | 'contained';
-  disabled?: boolean;
-  className?: string;
+import {IButtonBaseProps} from './ButtonBase.types';
+
+interface IButtonProps extends IButtonBaseProps {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
-  onClick?: () => void;
+  classes?: {
+    endIcon?: string;
+  };
 }
 
 const Button = (props: IButtonProps) => {
@@ -20,10 +19,11 @@ const Button = (props: IButtonProps) => {
     children, className,
     startIcon, endIcon,
     onClick,
+    classes,
   } = props;
 
-  const handleButtonClick = () => {
-    onClick && onClick();
+  const handleButtonClick = (e) => {
+    onClick && onClick(e);
   };
 
   return <MuiButton disabled={disabled}
@@ -32,6 +32,7 @@ const Button = (props: IButtonProps) => {
                     color={color}
                     startIcon={startIcon}
                     endIcon={endIcon}
+                    classes={classes}
                     onClick={handleButtonClick}>
     {children}
   </MuiButton>

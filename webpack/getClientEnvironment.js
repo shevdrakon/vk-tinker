@@ -13,6 +13,7 @@ const getClientEnvironment = (config, publicUrl) => ({
 
   TITLE: config.vkTinker.vkGroup.title,
   APPLICATION_ID: config.vkTinker.vkApi.applicationId,
+  VK_GROUP_URL: config.vkTinker.vkGroup.url,
 });
 
 module.exports = getClientEnvironment;

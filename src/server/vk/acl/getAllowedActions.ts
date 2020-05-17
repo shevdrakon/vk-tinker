@@ -2,7 +2,7 @@ import {groupsAcl} from './GroupsAcl';
 import {photosAcl} from './PhotosAcl';
 import {usersAcl} from './UsersAcl';
 
-import {IAclPermission, TokenType} from './acl.types';
+import {IAclPermission, TokenTypes} from './acl.types';
 
 interface IAllowedActions {
   groups: number;
@@ -10,7 +10,7 @@ interface IAllowedActions {
   users: number;
 }
 
-const getAllowedActions = (accessLevel: TokenType): IAllowedActions => {
+const getAllowedActions = (accessLevel: TokenTypes): IAllowedActions => {
   const getMaskForAclList = (aclList: Array<IAclPermission>) => aclList
     .filter(x => x.accessLevel === accessLevel)
     .reduce((mask, curr) => mask | curr.permission, 0);

@@ -19,7 +19,7 @@ const StoreProvider = (props: IStoreProviderProps) => {
 
   const store = configureStore({
     devTools: process.env.NODE_ENV !== 'production',
-    reducer: createRootReducer(),
+    reducer: createRootReducer(window.appConfig),
     middleware,
   });
 

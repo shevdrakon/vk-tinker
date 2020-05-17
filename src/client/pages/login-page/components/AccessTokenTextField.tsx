@@ -1,15 +1,16 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {showStandaloneAccessToken} from '../../../store/session/sessionActions';
 
 import InputAdornment from '../../../components/Inputs/InputAdornment';
 import TextField from '../../../components/TextFields/TextField';
 import IconButton from '../../../components/Buttons/IconButton';
-import {KeyIcon} from '../../../components/icons';
+import {KeyIcon} from '../../../components/Icons';
 
 import styles from './AccessTokenTextField.module.scss';
 import bemFactory from '../../../lib/bem-factory';
 import {IStore} from '../../../store/types/store.types';
+import useBindActionCreators from '../../../hooks/useBindActionCreators';
 
 const {block} = bemFactory('access-token-text-field', styles);
 
@@ -18,15 +19,11 @@ interface IAccessTokenTextField {
 }
 
 const AccessTokenTextField = (props: IAccessTokenTextField) => {
-  const dispatch = useDispatch();
   const accessTokenError = useSelector<IStore, string>(state => state.session.accessTokenError);
-
-  const handleClick = () => {
-    dispatch(showStandaloneAccessToken());
-  }
+  const actions = useBindActionCreators({showStandaloneAccessToken});
 
   const endAdornment = <InputAdornment position="end">
-    <IconButton onClick={handleClick}>
+    <IconButton onClick={actions.showStandaloneAccessToken}>
       <KeyIcon size={20} />
     </IconButton>
   </InputAdornment>;

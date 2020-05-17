@@ -1,29 +1,28 @@
 import {createReducer} from '@reduxjs/toolkit';
 import * as A from './sessionActions';
 
-import {ISessionStore, LoginState} from './session.types';
+import {ISessionState, LoginState} from './session.types';
 
-const initialState: ISessionStore = {
+const initialState: ISessionState = {
   loginState: LoginState.initial,
   accessTokenError: null,
 };
 
-const sessionReducer = createReducer(initialState, builder => {
-  builder.addCase(A.login.pending, (state) => {
+const sessionReducer = createReducer<ISessionState>(initialState, builder => {
+  builder.addCase(A.authorizeAsStandalone.pending, (state) => {
     return {
       ...state,
       loginState: LoginState.processing,
     }
   });
-  builder.addCase(A.login.rejected, (state, {error}) => {
-    const {message} = error;
+  builder.addCase(A.authorizeAsStandalone.rejected, (state, {error}) => {
     return {
       ...state,
-      accessTokenError: message,
+      accessTokenError: error.message,
       loginState: LoginState.error,
     }
   });
-  builder.addCase(A.login.fulfilled, (state) => {
+  builder.addCase(A.authorizeAsStandalone.fulfilled, (state) => {
     return {
       ...state,
       accessTokenError: null,

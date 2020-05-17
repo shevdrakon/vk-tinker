@@ -1,11 +1,18 @@
 import {FastifyInstance} from 'fastify';
 
-import testRouter from '../api/test/messages-router'
-import authorizationRouter from '../api/auth/authorizationRouter';
+import authenticationHook from '../fastifyHooks/authenticationHook';
+import authorizationRouter from '../api/authorization/authorizationRouter';
+import testRouter from '../api/test/testRouter';
 
 const apiRouterPlugin = async (app: FastifyInstance) => {
-  app.register(authorizationRouter, {prefix: '/'});
-  app.register(testRouter, {prefix: '/test'});
+  app.register(authorizationRouter);
+
+  app.register((app: FastifyInstance, opts, done) => {
+    app.addHook('preValidation', authenticationHook);
+    app.register(testRouter);
+
+    done();
+  });
 };
 
 export default apiRouterPlugin;

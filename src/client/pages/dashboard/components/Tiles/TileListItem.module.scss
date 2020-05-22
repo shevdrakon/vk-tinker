@@ -1,0 +1,40 @@
+.tile-list-item {
+  position: relative;
+  background: #e8f0fe;
+
+  &:hover [data-role="shadow"],
+  &:hover &__actions {
+    opacity: 1;
+  }
+
+  &__actions {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    fill: #fff;
+    outline: none;
+    padding: 4px 0 0 4px;
+
+    &--selected {
+      opacity: 1;
+
+      > svg {
+        fill: #1a73e8;
+        fill-opacity: 1;
+      }
+    }
+  }
+
+  &__icon {
+    fill-opacity: .54;
+  }
+
+  &__tile {
+    &--selected {
+      transform: scale(.9);
+    }
+  }
+}

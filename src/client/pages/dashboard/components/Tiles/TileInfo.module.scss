@@ -1,0 +1,60 @@
+.tile-info {
+  position: relative;
+  bottom: 0;
+  //height: 41px;
+  height: 105px;
+  padding: 30px 15px 20px 15px;
+
+  &__source-wrapper {
+    position: absolute;
+    top: -12px;
+    left: 15px;
+    z-index: 1;
+
+    &:before {
+      position: absolute;
+      top: -5px;
+      left: -25px;
+      content: "";
+      display: block;
+      width: 76px;
+      height: 26px;
+      background-position: right top;
+      background-repeat: no-repeat;
+      background-size: 76px auto;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NiAzMSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNmZmY7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5iZ19zb3VyY2VfYmFkZ2VfMTwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9IkxheWVyXzEtMiIgZGF0YS1uYW1lPSJMYXllciAxIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik01Ny42NywxMS45NEM1Mi4zNiw2LjcxLDQ4LjQyLDAsMzguMywwSDM3LjdDMjcuNTgsMCwyMy42NCw2LjcxLDE4LjMzLDExLjk0LDE0LjQ3LDE2Ljc2LDYuNjEsMTcuODEsMCwxOFYzMUg3NlYxOEM2OS4zOSwxNy44MSw2MS41MywxNi43Niw1Ny42NywxMS45NFoiLz48L2c+PC9nPjwvc3ZnPg==);
+      clip: rect(0px, 76px, 26px, 10px);
+      z-index: 0;
+    }
+  }
+
+  &__source {
+    position: relative;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 26px auto;
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    z-index: 1;
+    top: -1px;
+
+    background-image: url("chrome-extension://glcipcfhmopcgidicgdociohdoicpdfc/images/icon_designboom.png");
+  }
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    //padding: 0 23px;
+    //text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    text-shadow: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    //margin-top: 6%;
+  }
+}

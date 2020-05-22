@@ -2,6 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 import MenuIcon from '../../../components/Icons/MenuIcon';
+import MoreVerticalIcon from '../../../components/Icons/MoreVerticalIcon';
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -27,7 +28,7 @@ const Header = () => {
 
   return (
     <AppBar className={block()} elevation={4}>
-      <Toolbar className={element('toolbar')}>
+      <Toolbar disableGutters className={element('toolbar')}>
         <div className={element('title-container')}>
           <Hidden mdUp>
             <IconButton color="inherit" onClick={handleDrawerToggle}>
@@ -46,6 +47,11 @@ const Header = () => {
             name: 'Vadim',
             img: 'https://sun9-33.userapi.com/c627916/v627916081/3b77a/W9MizWYPYMg.jpg?ava=1',
           }} />
+          {/*<Hidden mdUp implementation="css">*/}
+          <IconButton color="inherit" className={element('icon')}>
+            <MoreVerticalIcon />
+          </IconButton>
+          {/*</Hidden>*/}
         </div>
       </Toolbar>
       <Hidden mdUp implementation="js">

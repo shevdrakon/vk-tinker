@@ -5,16 +5,18 @@ interface IIconButtonProps {
   children?: React.ReactNode;
   onClick?: React.MouseEventHandler;
   color?: 'inherit' | 'default' | 'primary' | 'secondary';
+  size?: 'small' | 'medium';
+  className?: string;
 }
 
 const IconButton = (props: IIconButtonProps) => {
-  const {children, onClick, color = 'primary'} = props;
+  const {children, onClick, color = 'primary', className, size} = props;
 
   const handleClick = (e) => {
     onClick && onClick(e);
   };
 
-  return <MuiIconButton color={color} onClick={handleClick}>
+  return <MuiIconButton size={size} className={className} color={color} onClick={handleClick}>
     {children}
   </MuiIconButton>
 };

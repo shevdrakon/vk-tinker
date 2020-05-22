@@ -1,10 +1,11 @@
 import React from 'react';
-import cn from 'classnames';
 
 import Header from './components/Header';
+import SideMenu from './components/SideMenu/SideMenu';
 
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import bemFactory from '../../lib/bem-factory';
+import styles from './DashboardPage.module.scss';
+import TileListItem from './components/Tiles/TileListItem';
 
 const urls = [
   'https://sun9-10.userapi.com/c7001/v7001979/569f4/h0DUjzx5chs.jpg',
@@ -22,51 +23,16 @@ const urls = [
   'https://sun9-55.userapi.com/iKy5xpL2Z5yxX9nhEIENOCa7XvKWVCc_PM165w/P9TaHVVv78s.jpg'
 ];
 
-import styles from './styles.module.scss';
+const {element} = bemFactory('dashboard-page', styles);
 
 const DashboardPage = () => {
-  const getPapers = (position) => urls.filter((_, index) => index % 6 === position);
-  const toImages = (position) => getPapers(position).map(x => <img className={styles.image} src={x} />);
-
-  // React.useEffect(() => {
-  //   new Isotope(
-  //     '.grid',
-  //     {
-  //       itemSelector: '.grid-item',
-  //       // fitRows: {
-  //       // },
-  //       masonry: {
-  //         columnWidth: '.grid-sizer'
-  //       }
-  //     },
-  //   )
-  // }, []);
-
   return <>
     <Header />
+    <SideMenu />
 
-    <ul className={styles.container} style={{paddingTop: 80}}>
+    <ul className={element('tiles-list')} style={{paddingTop: 80}}>
       {
-        urls.map(url =>
-          <li className={styles.item}>
-            <div className={styles.tile}>
-              <div className={styles.photo}>
-                <img className={styles.image} src={url} />
-                <div className={styles.share}>
-sh
-                </div>
-              </div>
-              <div className={styles.info}>
-                <div className={styles.sourceWrapper}>
-                  <span className={styles.source} />
-                </div>
-                <h3 className={styles.title}>Title here</h3>
-              </div>
-              <div className={styles.meta}>
-              </div>
-            </div>
-          </li>
-        )
+        urls.map(url => <TileListItem url={url} />)
       }
     </ul>
   </>

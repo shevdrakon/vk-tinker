@@ -5,6 +5,9 @@
   //margin-bottom: 20px;
 
   &__toolbar {
+    max-width: 1800px;
+    padding: 0 80px;
+
     flex-wrap: nowrap;
     flex: 1;
     width: 100%;
@@ -12,17 +15,17 @@
     margin-left: auto;
     margin-right: auto;
 
-    @include respond-above(tablet) {
-      max-width: 720px;
-    }
-
-    @include respond-above(desktop) {
-      max-width: 960px;
-    }
-
-    @include respond-above(xl) {
-      max-width: 1240px;
-    }
+    //@include respond-above(tablet) {
+    //  max-width: 720px;
+    //}
+    //
+    //@include respond-above(desktop) {
+    //  max-width: 960px;
+    //}
+    //
+    //@include respond-above(xl) {
+    //  max-width: 1240px;
+    //}
   }
 
   &__title-container {
@@ -46,5 +49,9 @@
 
   &__drawer-paper {
     width: 260px;
+  }
+
+  &__icon {
+    fill: white;
   }
 }

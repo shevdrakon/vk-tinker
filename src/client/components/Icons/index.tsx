@@ -7,6 +7,23 @@ import MenuIcon from './MenuIcon';
 import KeyboardArrowDownIcon from './KeyboardArrowDownIcon';
 import PhotoAlbumIcon from './PhotoAlbumIcon';
 import PhotoCardsIcon from './PhotoCardsIcon';
+import SoldCircleIcon from './SoldCircleIcon';
+import WrongCircleIcon from './WrongCircleIcon';
+import RulerCircleIcon from './RulerCircleIcon';
+import ShoppingCircleIcon from './ShoppingCircleIcon';
+import MonumentCircleIcon from './MonumentCircleIcon';
+import PriceCircleIcon from './PriceCircleIcon';
+import WrongAlbumIcon from './WrongAlbumCircleIcon';
+import ThreeHorizontalDotsIcon from './ThreeHorizontalDotsIcon';
+import ErrorCircleIcon from './ErrorCircleIcon';
+import ShareIcon from './ShareIcon';
+import CheckCircleIcon from './CheckCircleIcon';
+import CircleIcon from './CircleIcon';
+import PhotosOutlinedIcon from './PhotosOutlinedIcon';
+import PhotosFilledIcon from './PhotosFilledIcon';
+import AlbumsOutlinedIcon from './AlbumsOutlinedIcon';
+import AlbumsFilledIcon from './AlbumsFilledIcon';
+import MoreVerticalIcon from './MoreVerticalIcon';
 
 export {
   PolaroidIcon,
@@ -18,4 +35,21 @@ export {
   KeyboardArrowDownIcon,
   PhotoAlbumIcon,
   PhotoCardsIcon,
+  SoldCircleIcon,
+  WrongCircleIcon,
+  RulerCircleIcon,
+  ShoppingCircleIcon,
+  MonumentCircleIcon,
+  PriceCircleIcon,
+  WrongAlbumIcon,
+  ThreeHorizontalDotsIcon,
+  ErrorCircleIcon,
+  ShareIcon,
+  CheckCircleIcon,
+  CircleIcon,
+  PhotosOutlinedIcon,
+  PhotosFilledIcon,
+  AlbumsOutlinedIcon,
+  AlbumsFilledIcon,
+  MoreVerticalIcon,
 };

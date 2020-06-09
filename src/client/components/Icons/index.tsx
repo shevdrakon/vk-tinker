@@ -23,9 +23,19 @@ import PhotosOutlinedIcon from './PhotosOutlinedIcon';
 import PhotosFilledIcon from './PhotosFilledIcon';
 import AlbumsOutlinedIcon from './AlbumsOutlinedIcon';
 import AlbumsFilledIcon from './AlbumsFilledIcon';
+import MalwareOutlinedIcon from './MalwareOutlinedIcon';
+import MalwareFilledIcon from './MalwareFilledIcon';
 import MoreVerticalIcon from './MoreVerticalIcon';
+import CloseIcon from './CloseIcon';
+import BasketIcon from './BasketIcon';
+import AddIcon from './AddIcon';
+import CommentsIcon from './CommentsIcon';
+import PhotoCameraIcon from './PhotoCameraIcon';
 
 export {
+  CloseIcon,
+  BasketIcon,
+  AddIcon,
   PolaroidIcon,
   KeyholeIcon,
   KeyIcon,
@@ -51,5 +61,9 @@ export {
   PhotosFilledIcon,
   AlbumsOutlinedIcon,
   AlbumsFilledIcon,
+  MalwareOutlinedIcon,
+  MalwareFilledIcon,
   MoreVerticalIcon,
+  CommentsIcon,
+  PhotoCameraIcon,
 };

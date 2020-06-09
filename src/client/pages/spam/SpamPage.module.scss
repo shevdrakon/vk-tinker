@@ -1,0 +1,14 @@
+@import '../../../styles/core/variables/media';
+
+.spam-page {
+  &__list-container {
+    padding: 80px 20px 50px 80px;
+    margin: auto;
+    max-width: 1800px;
+
+
+    @include respond-above(tablet) {
+      padding-right: 80px;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import '../../../../../../styles/core/variables/media';
+
+.header-main-content {
+  width: 100%;
+  height: 100%;
+
+  max-width: 1800px;
+  padding: 0 4px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+
+  @include respond-above(tablet) {
+    padding: 0 80px;
+  }
+
+  &__actions-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    color: white !important;
+    font-size: 18px !important;
+    text-transform: none !important;
+
+    &:hover,
+    &:focus {
+      background: transparent !important;
+    }
+  }
+
+  &__icon {
+    fill: white;
+  }
+}

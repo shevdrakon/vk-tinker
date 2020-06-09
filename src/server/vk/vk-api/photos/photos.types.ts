@@ -1,22 +1,23 @@
-import {IVkComment} from '../comments/comments.type';
+import {IVkAlbumSize, IVkPhotoSize} from './vk.photos.types';
 
-// https://vk.com/dev/photo_sizes
-declare type VkPhotoSizeTypes = 's' | 'm' | 'x' | 'o' | 'p' | 'q' | 'r' | 'y' | 'z' | 'w';
-
-export interface IVkPhotoSize {
-  type: VkPhotoSizeTypes,
-  url: string;
-  width: number;
-  height: number;
+export interface IAlbum {
+  id: number;
+  thumb_id: number;
+  owner_id: number;
+  title: string;
+  description: string;
+  created: number;
+  updated: number;
+  size: number;
+  sizes: Record<string, IVkAlbumSize>;
 }
 
-export interface IVkPhoto {
+export interface IPhoto {
   id: number;
   album_id: number;
   owner_id: number;
   user_id: number;
-  sizes: IVkPhotoSize[];
   text: string;
   date: number;
-  comments: IVkComment[]
+  sizes: Record<string, IVkPhotoSize>;
 }

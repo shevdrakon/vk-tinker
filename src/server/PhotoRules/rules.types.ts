@@ -1,4 +1,7 @@
-import {IVkPhoto} from '../vk/vk-api/photos/photos.types';
+import {IPhoto} from '../vk/vk-api/photos/photos.types';
+import {IVkComment} from '../vk/vk-api/comments/comments.type';
+
+export type Photo = IPhoto & { comments: IVkComment[] }
 
 export enum PhotoRules {
   Sold = 'sold',
@@ -12,9 +15,4 @@ export interface IPhotoRuleResult {
   reason: string;
 }
 
-export interface IPhotoWithRulesResult {
-  photo: IVkPhoto;
-  result: {
-    [key in PhotoRules]: IPhotoRuleResult;
-  };
-}
+export type PhotoRulesResult = Record<string, IPhotoRuleResult>;

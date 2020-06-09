@@ -7,8 +7,8 @@ export interface ThunkConfig {
   }
 }
 
-export type PayloadCreator<TArg> = AsyncThunkPayloadCreator<any, TArg, ThunkConfig>;
+export type PayloadCreator<TArg, TReturned> = AsyncThunkPayloadCreator<TReturned, TArg, ThunkConfig>;
 
-export const createAsyncThunk = <TArg>(type: string, payloadCreator: PayloadCreator<TArg>) => {
+export const createAsyncThunk = <TArg, TReturned>(type: string, payloadCreator: PayloadCreator<TArg, TReturned>) => {
   return ReduxToolkitCreateAsyncThunk(type, payloadCreator);
 }

@@ -21,10 +21,10 @@ const createGateway = ({baseUrl}) => {
     post(url, data, headers = {}) {
       return this.fetch(url, 'POST', data, headers);
     },
-    get(url, headers) {
+    get(url, headers = {}) {
       return this.fetch(url, 'GET', null, headers);
     },
-    put(url, data, headers) {
+    put(url, data, headers = {}) {
       return this.fetch(url, 'PUT', data, headers);
     },
     patch(url, data, headers) {
@@ -43,7 +43,7 @@ const buildFetchOptions = (method: string, data: unknown, headers: { [key: strin
   };
 
   const contentType = getHeader('Content-Type');
-  if (typeof data === 'object' && (!contentType || contentType.match(/^application\/json/))) {
+  if (data !== null && typeof data === 'object' && (!contentType || contentType.match(/^application\/json/))) {
     data = JSON.stringify(data);
 
     if (!contentType) {

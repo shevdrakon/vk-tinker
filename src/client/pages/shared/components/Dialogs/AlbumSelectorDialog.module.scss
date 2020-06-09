@@ -1,0 +1,35 @@
+.album-selector-dialog {
+  &__title {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 8px 10px 8px 24px;
+    letter-spacing: .00625em;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+  }
+
+  &__title-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  &__content {
+    width: 380px;
+    height: 420px;
+    padding: 0;
+    max-width: 90vw;
+    max-height: 60vh;
+    outline: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-top: 1px solid #dadce0;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+  }
+}

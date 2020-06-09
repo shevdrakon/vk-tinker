@@ -1,18 +1,17 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+
+import useAppStateSelector from '../../../hooks/useAppStateSelector';
 
 import Button from '../../../components/Buttons/Button';
 import {LoginState} from '../../../store/session/session.types';
 import CircularProgress from '../../../components/Progress/CircularProgress';
-
-import {IStore} from '../../../store/types/store.types';
 
 interface IContinueButton {
   onClick?: () => void;
 }
 
 const ContinueButton = (props: IContinueButton) => {
-  const loginState = useSelector<IStore>(state => state.session.loginState);
+  const loginState = useAppStateSelector(x => x.session.loginState);
   const isProcessing = loginState === LoginState.processing;
   const continueButtonIcon = isProcessing ? <CircularProgress /> : null;
 

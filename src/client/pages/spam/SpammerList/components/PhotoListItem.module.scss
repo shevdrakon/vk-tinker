@@ -1,0 +1,18 @@
+.photo-list-item {
+  position: relative;
+  background: #e8f0fe;
+  cursor: pointer;
+
+  &__actions {
+    position: absolute;
+    top: 0;
+    color: #fff;
+    fill: #fff;
+  }
+
+  &__tile {
+    &--selected {
+      transform: scale(.9) !important;
+    }
+  }
+}

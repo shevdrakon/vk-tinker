@@ -1,0 +1,16 @@
+.action-icon {
+  fill: #fff;
+  fill-opacity: .54;
+  transition: all .135s cubic-bezier(0.0, 0.0, 0.2, 1);
+  transition-property: opacity, fill-opacity;
+
+  &:hover {
+    fill-opacity: 1;
+  }
+
+  &--active {
+    fill: #1a73e8;
+    fill-opacity: 1;
+    opacity: 1;
+  }
+}

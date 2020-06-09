@@ -1,3 +1,5 @@
+import {ISessionUser} from '../../../../types/fastify';
+
 export enum LoginState {
   initial = 'initial',
   processing = 'processing',
@@ -8,4 +10,5 @@ export enum LoginState {
 export interface ISessionState {
   loginState: LoginState;
   accessTokenError: string;
+  user: ISessionUser;
 }

@@ -56,7 +56,7 @@ class VkApiService {
     return this.json(url, 'GET')
   }
 
-  async execute(method: string, payload: any) {
+  async execute<TReturned>(method: string, payload: any) {
     const p = {
       ...payload,
       access_token: this.options.accessToken,
@@ -70,7 +70,7 @@ class VkApiService {
 
     if (response.error) throw this.buildError(response);
 
-    return response.response;
+    return response.response as TReturned;
   }
 
   private buildError(response: any): Error {

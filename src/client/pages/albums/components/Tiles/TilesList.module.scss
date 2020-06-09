@@ -1,0 +1,12 @@
+.tiles-list {
+  list-style: none;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-auto-flow: row dense;
+  grid-gap: 1.9vw;
+  padding: 0 80px 50px 80px;
+
+  margin: auto;
+  max-width: 1800px;
+}

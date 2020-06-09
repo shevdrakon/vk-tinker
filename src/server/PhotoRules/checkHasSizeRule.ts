@@ -1,7 +1,4 @@
-import {IPhotoRuleResult, PhotoRules} from './rules.types';
-import {IVkPhoto} from '../vk/vk-api/photos/photos.types';
-
-const regexp = /размер/gui;
+import {IPhotoRuleResult, PhotoRules, Photo} from './rules.types';
 
 const success = (reason: string): IPhotoRuleResult => ({
   key: PhotoRules.Size,
@@ -15,8 +12,10 @@ const keywordNotFound = (): IPhotoRuleResult => ({
   reason: 'Size keyword was not found in description/comments by author.'
 });
 
-const checkHasSizeRule = (photo: IVkPhoto): IPhotoRuleResult => {
-  const authorId = photo.owner_id;
+
+const checkHasSizeRule = (photo: Photo): IPhotoRuleResult => {
+  const authorId = photo.user_id;
+  const regexp = /размер/gui;
 
   if (regexp.test(photo.text))
     return success('Size keyword found in photo description.');

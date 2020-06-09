@@ -6,6 +6,7 @@ import {ISessionState, LoginState} from './session.types';
 const initialState: ISessionState = {
   loginState: LoginState.initial,
   accessTokenError: null,
+  user: null,
 };
 
 const sessionReducer = createReducer<ISessionState>(initialState, builder => {
@@ -22,9 +23,18 @@ const sessionReducer = createReducer<ISessionState>(initialState, builder => {
       loginState: LoginState.error,
     }
   });
-  builder.addCase(A.authorizeAsStandalone.fulfilled, (state) => {
+  builder.addCase(A.authorizeAsStandalone.fulfilled, (state, {payload}) => {
     return {
       ...state,
+      user: payload,
+      accessTokenError: null,
+      loginState: LoginState.success,
+    }
+  });
+  builder.addCase(A.authorizeWithLimitedAccess.fulfilled, (state, {payload}) => {
+    return {
+      ...state,
+      user: payload,
       accessTokenError: null,
       loginState: LoginState.success,
     }

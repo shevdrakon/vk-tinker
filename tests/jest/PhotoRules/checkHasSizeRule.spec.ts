@@ -1,7 +1,7 @@
 import checkHasSizeRule from '../../../src/server/PhotoRules/checkHasSizeRule';
 
 import createPartialMock from '../.utils/createPartialMock';
-import {IVkPhoto} from '../../../src/server/vk/vk-api/photos/photos.types';
+import {IVkPhoto} from '../../../src/server/vk/vk-api/photos/vk.photos.types';
 import {PhotoRules} from '../../../src/server/PhotoRules/rules.types';
 import {IVkComment} from '../../../src/server/vk/vk-api/comments/comments.type';
 

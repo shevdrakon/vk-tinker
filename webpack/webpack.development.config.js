@@ -17,9 +17,9 @@ const getClientEnvironment = require('./getClientEnvironment');
 
 const babelOptions = require('../src/client/babel.config.js');
 
-const publicUrl = '';
+const publicPath = '/';
 const config = require('../src/server/configuration/development.configuration');
-const env = getClientEnvironment(config, publicUrl);
+const env = getClientEnvironment(config, publicPath);
 
 // const path = require('path');
 // const HtmlWebPackPlugin = require("html-webpack-plugin");
@@ -50,7 +50,7 @@ module.exports = {
   output: {
     path: resolveRelativePath('../dist/client'),
     filename: 'assets/[name].js',
-    publicPath: publicUrl,
+    publicPath,
     pathinfo: true,
   },
 
@@ -171,7 +171,7 @@ module.exports = {
   },
 
   devServer: {
-    publicPath: '/',
+    publicPath,
     port: 8090,
     historyApiFallback: {
       disableDotRule: true,

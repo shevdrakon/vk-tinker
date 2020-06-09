@@ -2,6 +2,7 @@ import {FastifyMiddleware} from 'fastify';
 
 const authenticationHook: FastifyMiddleware = (request, reply, done) => {
   const dropSession = () => {
+    delete request.session.user;
     delete request.session.accessToken;
     delete request.session.authenticated;
   }
@@ -14,7 +15,7 @@ const authenticationHook: FastifyMiddleware = (request, reply, done) => {
   } else {
     const {expire} = accessToken;
 
-    if (new Date(expire * 1000) >= new Date()) {
+    if (new Date(expire * 1000) <= new Date()) {
       dropSession();
       reply.code(401).send();
     }

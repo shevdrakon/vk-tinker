@@ -1,7 +1,4 @@
-import {IPhotoRuleResult, PhotoRules} from './rules.types';
-import {IVkPhoto} from '../vk/vk-api/photos/photos.types';
-
-const regexp = /продан/gui;
+import {IPhotoRuleResult, Photo, PhotoRules} from './rules.types';
 
 const noComments = (): IPhotoRuleResult => ({
   key: PhotoRules.Sold,
@@ -15,8 +12,9 @@ const noSoldComment = (): IPhotoRuleResult => ({
   reason: 'Unable to find sold comment by author.',
 });
 
-const checkSoldRule = (photo: IVkPhoto): IPhotoRuleResult => {
-  const authorId = photo.owner_id;
+const checkSoldRule = (photo: Photo): IPhotoRuleResult => {
+  const regexp = /продан/gui;
+  const authorId = photo.user_id;
 
   if (!photo.comments || !photo.comments.length)
     return noComments();

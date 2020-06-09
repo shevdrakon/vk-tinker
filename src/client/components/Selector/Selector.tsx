@@ -46,7 +46,9 @@ const Selector = (props: ISelectorProps) => {
   const buttonClasses = cn(block(), className);
 
   const childrenArray = React.Children.toArray(children);
+  // @ts-ignore
   const headerComponent = childrenArray.find(x => x.type === SelectorHeader);
+  // @ts-ignore
   const items = childrenArray.filter(x => x.type !== SelectorHeader);
 
   const showText = !headerComponent;

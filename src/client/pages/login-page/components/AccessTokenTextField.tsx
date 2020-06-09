@@ -1,5 +1,4 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
 import {showStandaloneAccessToken} from '../../../store/session/sessionActions';
 
 import InputAdornment from '../../../components/Inputs/InputAdornment';
@@ -9,8 +8,8 @@ import {KeyIcon} from '../../../components/Icons';
 
 import styles from './AccessTokenTextField.module.scss';
 import bemFactory from '../../../lib/bem-factory';
-import {IStore} from '../../../store/types/store.types';
 import useBindActionCreators from '../../../hooks/useBindActionCreators';
+import useAppStateSelector from '../../../hooks/useAppStateSelector';
 
 const {block} = bemFactory('access-token-text-field', styles);
 
@@ -19,7 +18,7 @@ interface IAccessTokenTextField {
 }
 
 const AccessTokenTextField = (props: IAccessTokenTextField) => {
-  const accessTokenError = useSelector<IStore, string>(state => state.session.accessTokenError);
+  const accessTokenError = useAppStateSelector(x => x.session.accessTokenError);
   const actions = useBindActionCreators({showStandaloneAccessToken});
 
   const endAdornment = <InputAdornment position="end">

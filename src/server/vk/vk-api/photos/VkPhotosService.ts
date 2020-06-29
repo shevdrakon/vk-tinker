@@ -5,7 +5,7 @@ import config from '../../../config';
 
 import {
   IAggregatedVkPhotosResponse,
-  IFirstPhotoByDateResponse,
+  IFindPhotoRangeResponse,
   IMovePhotoResponse,
   IVkAlbumsResponse, IVkGetPhotosWithUsersResponse
 } from './vk.photos.types';
@@ -48,7 +48,7 @@ class VkPhotosService extends VkApiService {
     }
   }
 
-  async getPhotos(payload: { offset: number; count: number; }): Promise<IGetPhotosResponse> {
+  async getPhotos(payload: { offset: number; count: number; album_id?: number; }): Promise<IGetPhotosResponse> {
     const {count} = payload;
     if (count > 20) throw `Unable to retrieve mor then 20 photos by request.`;
 
@@ -89,11 +89,18 @@ class VkPhotosService extends VkApiService {
     }
   }
 
-  findFirstPhotoPositionByDate(date: number): Promise<IFirstPhotoByDateResponse> {
+  findFirstPhotoPositionByDate(date: number): Promise<IFindPhotoRangeResponse> {
     if (date <= 0) throw `date should have a positive value.`
 
     const payload = {date};
-    return this.execute<IFirstPhotoByDateResponse>('execute.bsearch_first_photo_position_by_date', payload);
+    return this.execute<IFindPhotoRangeResponse>('execute.bsearch_first_photo_position_by_date', payload);
+  }
+
+  findPhotoPositionById(photo_id: number): Promise<IFindPhotoRangeResponse> {
+    if (photo_id <= 0) throw `photo is should be a positive number.`
+
+    const payload = {photo_id};
+    return this.execute<IFindPhotoRangeResponse>('execute.bsearch_photo_position_by_id', payload);
   }
 
   async getAllWithUsers(args: { offset: number; count: number; }): Promise<IGetPhotosWithUsersResponse> {

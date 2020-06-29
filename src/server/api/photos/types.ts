@@ -14,5 +14,6 @@ export interface IGetPhotosResponse {
     rules: Record<string, IPhotoRuleResult>;
   })[];
   itemsTotalCount: number;
+  itemsSkipped: number;
   users: Record<number, IVkUser>;
 }

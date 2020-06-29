@@ -1,14 +1,13 @@
-import {createReducer, createSelector} from '@reduxjs/toolkit';
+import {createReducer} from '@reduxjs/toolkit';
 import * as A from './photosActions';
 
-import {IPhotosState, PhotosActionsMode, PhotosState} from './photos.types';
-import {IAppState} from '../types/store.types';
+import {IPhotosState, PhotosState} from './photos.types';
 
 const initialState: IPhotosState = {
   photosState: PhotosState.initial,
   items: [],
   itemsTotalCount: 0,
-  selected: {},
+  newItemsCount: 0,
 };
 
 const photosReducer = createReducer<IPhotosState>(initialState, builder => {
@@ -25,12 +24,30 @@ const photosReducer = createReducer<IPhotosState>(initialState, builder => {
     }
   });
   builder.addCase(A.fetchPhotos.fulfilled, (state, {payload}) => {
-    const {items, itemsTotalCount} = payload;
+    const {items, itemsTotalCount, itemsSkipped} = payload;
 
     return {
       ...state,
       photosState: PhotosState.success,
       items,
+      itemsTotalCount,
+      newItemsCount: itemsSkipped,
+    }
+  });
+
+  builder.addCase(A.fetchNextPagePhotos.pending, state => {
+    state.photosState = PhotosState.fetchingNextPage;
+  });
+  builder.addCase(A.fetchNextPagePhotos.fulfilled, (state, {payload}) => {
+    const {items, itemsTotalCount, itemsSkipped} = payload;
+    const nextItems = state.items.concat(items);
+    const newItemsCount = Math.abs(nextItems.length - 20 - itemsSkipped);
+
+    return {
+      ...state,
+      photosState: PhotosState.success,
+      items: nextItems,
+      newItemsCount,
       itemsTotalCount,
     }
   });
@@ -57,47 +74,6 @@ const photosReducer = createReducer<IPhotosState>(initialState, builder => {
       itemsTotalCount,
     }
   });
-
-  builder.addCase(A.togglePhotoSelect, (state, action) => {
-    const {payload: photoId} = action;
-
-    return {
-      ...state,
-      selected: {
-        ...state.selected,
-        [photoId]: !state.selected[photoId],
-      }
-    }
-  });
-  builder.addCase(A.clearPhotoSelection, (state) => {
-    return {
-      ...state,
-      selected: {},
-    }
-  });
 });
-
-const getMode = createSelector<IAppState, Record<number, boolean>, PhotosActionsMode>(
-  [state => state.photos.selected],
-  selected => {
-    const hasSelectedKey = !!Object.keys(selected).find(x => !!selected[x]);
-    return hasSelectedKey ? PhotosActionsMode.edit : PhotosActionsMode.view;
-  });
-
-const getSelected = createSelector<IAppState, Record<number, boolean>, number[]>(
-  [state => state.photos.selected],
-  selected => {
-    return Object.keys(selected).filter(x => !!selected[x]).map(Number);
-  }
-);
-
-export const SELECTORS = {
-  isSelected: (photoId: number) => (state: IAppState) => {
-    return !!state.photos.selected[photoId];
-  },
-
-  getMode,
-  getSelected,
-};
 
 export default photosReducer;

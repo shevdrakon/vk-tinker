@@ -23,4 +23,20 @@
     padding: 0.9375rem 14px;
     position: relative;
   }
+
+  &__empty-list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__text {
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  &__empty-smile {
+    fill: #5f6368;
+  }
 }

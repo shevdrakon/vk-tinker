@@ -10,6 +10,7 @@ interface IActionIconProps {
   component: any;
   onClick?: MouseEventHandler;
   active?: boolean;
+  size?: number;
 }
 
 const ActionIcon = (props: IActionIconProps) => {

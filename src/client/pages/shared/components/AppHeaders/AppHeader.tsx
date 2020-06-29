@@ -1,15 +1,16 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 
+import {SELECTORS} from '../../../../store/photosSelection/photosSelectionReducer';
+
 import AppHeaderContent from './AppHeaderContent/AppHeaderContent';
 import HeaderMainContent from './AppHeaderContent/HeaderMainContent';
 import HeaderSelectPhotosContent from './AppHeaderContent/HeaderSelectPhotosContent';
 import useAppStateSelector from '../../../../hooks/useAppStateSelector';
-import {SELECTORS} from '../../../../store/photos/photosReducer';
+import {PhotosActionsMode} from '../../../../store/photosSelection/photosSelection.types';
 
 import styles from './AppHeader.module.scss';
 import bemFactory from '../../../../lib/bem-factory';
-import {PhotosActionsMode} from '../../../../store/photos/photos.types';
 
 const {block} = bemFactory('app-header', styles);
 

@@ -7,11 +7,7 @@ export enum PhotosState {
   processing = 'processing',
   success = 'success',
   error = 'error',
-}
-
-export enum PhotosActionsMode {
-  view = 'view',
-  edit = 'edit',
+  fetchingNextPage = 'fetchingNextPage',
 }
 
 export interface IDashboardPhoto extends IPhoto {
@@ -23,5 +19,5 @@ export interface IPhotosState {
   photosState: PhotosState;
   items: IDashboardPhoto[];
   itemsTotalCount: number;
-  selected: Record<number, boolean>;
+  newItemsCount: number;
 }

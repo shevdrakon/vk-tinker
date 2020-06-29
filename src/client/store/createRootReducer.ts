@@ -5,6 +5,7 @@ import photosReducer from './photos/photosReducer';
 import usersReducer from './users/usersReducer';
 import albumsReducer from './albums/albumsReducer';
 import spammersReducer from './spammers/spammersReducer';
+import photosSelectionReducer from './photosSelection/photosSelectionReducer';
 
 const createRootReducer = (config: IAppConfig) => ({
   config: createConfigReducer(config),
@@ -13,6 +14,7 @@ const createRootReducer = (config: IAppConfig) => ({
   users: usersReducer,
   albums: albumsReducer,
   spammers: spammersReducer,
+  selection: photosSelectionReducer,
 });
 
 export default createRootReducer;

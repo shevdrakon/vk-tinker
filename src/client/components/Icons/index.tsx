@@ -31,6 +31,10 @@ import BasketIcon from './BasketIcon';
 import AddIcon from './AddIcon';
 import CommentsIcon from './CommentsIcon';
 import PhotoCameraIcon from './PhotoCameraIcon';
+import SmileIcon from './SmileIcon';
+import FatKittyIcon from './FatKittyIcon';
+import HappyKittyIcon from './HappyKittyIcon';
+import CopyIcon from './CopyIcon';
 
 export {
   CloseIcon,
@@ -66,4 +70,8 @@ export {
   MoreVerticalIcon,
   CommentsIcon,
   PhotoCameraIcon,
+  SmileIcon,
+  FatKittyIcon,
+  HappyKittyIcon,
+  CopyIcon,
 };

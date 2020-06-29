@@ -1,0 +1,15 @@
+.tile-actions {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  fill: #fff;
+  outline: none;
+  padding: 4px 0 0 4px;
+
+  &--edit {
+    opacity: 1;
+  }
+}

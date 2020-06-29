@@ -59,7 +59,21 @@
     bottom: 15px;
   }
 
+  &__album-title {
+    padding-left: 4px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
   &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 12px;
+
     position: absolute;
     bottom: 0;
     right: 0;

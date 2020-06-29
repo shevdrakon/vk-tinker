@@ -1,6 +1,12 @@
 import React from 'react';
 import cn from 'classnames';
 
+import useBindActionCreators from '../../../../hooks/useBindActionCreators';
+import useAppStateSelector from '../../../../hooks/useAppStateSelector';
+import {togglePhotoSelect} from '../../../../store/photosSelection/photosSelectionActions';
+import {SELECTORS} from '../../../../store/photosSelection/photosSelectionReducer';
+import {SELECTORS as AlbumsSelectors} from '../../../../store/albums/albumsReducer';
+
 import Tile from './Tile/Tile';
 import ActionIcon from '../../../shared/components/ActionIcons/ActionIcon';
 import {CheckCircleIcon, CircleIcon} from '../../../../components/Icons';
@@ -16,11 +22,15 @@ interface IPhotoListItemProps {
 }
 
 const PhotoListItem = (props: IPhotoListItemProps) => {
-  const [selected, setSelected] = React.useState(false);
   const {photo} = props;
 
+  const actions = useBindActionCreators({togglePhotoSelect});
+  const selected = useAppStateSelector(SELECTORS.isSelected(photo.id));
+  const albumsHash = useAppStateSelector(AlbumsSelectors.getAlbumsHash);
+  const album = albumsHash[photo.album_id];
+
   const handleClick = () => {
-    setSelected(!selected);
+    actions.togglePhotoSelect(photo.id);
   }
 
   const tileClasses = cn({
@@ -28,7 +38,7 @@ const PhotoListItem = (props: IPhotoListItemProps) => {
   })
 
   return <li className={block()} onClick={handleClick}>
-    <Tile photo={photo} className={tileClasses} />
+    <Tile album={album} photo={photo} className={tileClasses} />
     <div className={element('actions')}>
       {!selected && <ActionIcon component={CircleIcon} />}
       {selected && <ActionIcon component={CheckCircleIcon} active />}

@@ -13,18 +13,16 @@ const {block} = bemFactory('tile', styles);
 
 interface ITileProps {
   photo: IDashboardPhoto;
-  className?: string;
 }
 
 const Tile = (props: ITileProps) => {
-  const {photo, className} = props;
-  const classes = cn(block(), className);
+  const {photo} = props;
 
-  return <div className={classes}>
+  return <div className={block()}>
     <TilePhoto photo={photo} />
     <TileInfo photo={photo} />
     <TileMeta photo={photo} />
   </div>
 };
 
-export default Tile;
+export default React.memo(Tile);

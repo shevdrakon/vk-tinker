@@ -1,13 +1,14 @@
 import React from 'react';
 
 import useAppStateSelector from '../../../../../hooks/useAppStateSelector';
-import {SELECTORS} from '../../../../../store/photos/photosReducer';
 import useBindActionCreators from '../../../../../hooks/useBindActionCreators';
-import {clearPhotoSelection, movePhotos} from '../../../../../store/photos/photosActions';
+import {SELECTORS} from '../../../../../store/photosSelection/photosSelectionReducer';
+import {clearPhotoSelection, movePhotos} from '../../../../../store/photosSelection/photosSelectionActions';
 
 import IconButton from '../../../../../components/Buttons/IconButton';
 import {AddIcon, MoreVerticalIcon, BasketIcon} from '../../../../../components/Icons';
 import AlbumSelectorDialog from '../../Dialogs/AlbumSelectorDialog';
+import PhotoDeleteConfirmationDialog from '../../Dialogs/PhotoDeleteConfirmationDialog';
 
 import styles from './HeaderSelectPhotosContent.module.scss';
 import bemFactory from '../../../../../lib/bem-factory';
@@ -17,6 +18,8 @@ const {block, element} = bemFactory('header-select-photos-content', styles);
 
 const HeaderSelectPhotosContent = () => {
   const [openSelectAlbumDialog, setOpenSelectAlbumDialog] = React.useState(false);
+  const [openRemovePhotosDialog, setOpenRemovePhotosDialog] = React.useState(false);
+
   const actions = useBindActionCreators({clearPhotoSelection, movePhotos});
   const selectedPhotos = useAppStateSelector(SELECTORS.getSelected);
   const selectedCount = selectedPhotos.length;
@@ -29,17 +32,16 @@ const HeaderSelectPhotosContent = () => {
     setOpenSelectAlbumDialog(true);
   }
 
+  const handleRemoveIconClick = () => {
+    setOpenRemovePhotosDialog(true);
+  }
+
   const handleCloseSelectAlbumDialog = () => {
     setOpenSelectAlbumDialog(false);
   }
 
-  const handleAlbumSelect = (albumId: number) => {
-    const payload = {
-      targetAlbumId: albumId,
-      photosIds: selectedPhotos,
-    };
-
-    actions.movePhotos(payload);
+  const handleCloseRemovePhotosDialog = () => {
+    setOpenRemovePhotosDialog(false);
   }
 
   return <div className={block()}>
@@ -56,7 +58,7 @@ const HeaderSelectPhotosContent = () => {
       <IconButton color="inherit" onClick={handleAddIconClick}>
         <AddIcon />
       </IconButton>
-      <IconButton color="inherit">
+      <IconButton color="inherit" onClick={handleRemoveIconClick}>
         <BasketIcon />
       </IconButton>
       <IconButton color="inherit">
@@ -64,10 +66,8 @@ const HeaderSelectPhotosContent = () => {
       </IconButton>
     </div>
 
-    <AlbumSelectorDialog open={openSelectAlbumDialog}
-                         onClose={handleCloseSelectAlbumDialog}
-                         onSelect={handleAlbumSelect}
-                         title="Move to" />
+    <AlbumSelectorDialog open={openSelectAlbumDialog} onClose={handleCloseSelectAlbumDialog} />
+    <PhotoDeleteConfirmationDialog open={openRemovePhotosDialog} onClose={handleCloseRemovePhotosDialog} />
   </div>
 };
 

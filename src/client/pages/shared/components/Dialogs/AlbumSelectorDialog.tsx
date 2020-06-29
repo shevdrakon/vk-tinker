@@ -1,47 +1,47 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 
+import useAppStateSelector from '../../../../hooks/useAppStateSelector';
+import useBindActionCreators from '../../../../hooks/useBindActionCreators';
+import {movePhotos} from '../../../../store/photosSelection/photosSelectionActions';
+
+import AlbumSelectorOption from './AlbumSelectorOption';
+import DialogHeader from './components/DialogHeader';
+import DialogContent from './components/DialogContent';
+
 import styles from './AlbumSelectorDialog.module.scss';
 import bemFactory from '../../../../lib/bem-factory';
-import IconButton from '../../../../components/Buttons/IconButton';
-import CloseIcon from '../../../../components/Icons/CloseIcon';
-import useAppStateSelector from '../../../../hooks/useAppStateSelector';
-import AlbumSelectorOption from './AlbumSelectorOption';
+import {SELECTORS} from '../../../../store/photosSelection/photosSelectionReducer';
 
 const {block, element} = bemFactory('album-selector-dialog', styles);
 
 interface IAlbumSelectorDialogProps {
-  title: string;
   open: boolean;
   onClose: () => void;
-  onSelect: (albumId: number) => void;
 }
 
 const AlbumSelectorDialog = (props: IAlbumSelectorDialogProps) => {
-  const {title, open, onClose, onSelect} = props;
+  const {open, onClose} = props;
   const items = useAppStateSelector(x => x.albums.items);
+  const actions = useBindActionCreators({movePhotos});
+  const selectedPhotos = useAppStateSelector(SELECTORS.getSelected);
 
   const handleAlbumClick = (albumId: number) => {
-    onSelect(albumId);
+    const payload = {targetAlbumId: albumId, photosIds: selectedPhotos};
+    actions.movePhotos(payload);
+
     onClose();
-  };
+  }
 
   return <Dialog open={open} onClose={onClose} className={block()}>
-    <div className={element('title')}>
-      <div className={element('title-text')}>
-        {title}
-      </div>
-      <IconButton color="default" onClick={onClose}>
-        <CloseIcon />
-      </IconButton>
-    </div>
-    <div className={element('content')}>
+    <DialogHeader title="Move to" onClose={onClose} />
+    <DialogContent>
       <ul className={element('list')}>
         {
           items.map(x => <AlbumSelectorOption key={x.id} album={x} onClick={handleAlbumClick} />)
         }
       </ul>
-    </div>
+    </DialogContent>
   </Dialog>
 };
 

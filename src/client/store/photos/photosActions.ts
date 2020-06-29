@@ -1,14 +1,33 @@
-import {createAction} from '@reduxjs/toolkit'
 import {createAsyncThunk} from '../utils/createAsyncThunk';
 import {IGetPhotosResponse} from '../../../server/api/photos/types';
 
-export const fetchPhotos = createAsyncThunk<void, IGetPhotosResponse>(
+interface IFetchPhotosArgs {
+  start: number;
+  page: number;
+}
+
+export const fetchPhotos = createAsyncThunk<IFetchPhotosArgs, IGetPhotosResponse>(
   'PHOTOS/FETCH',
-  async (_, {extra}) => {
+  async (args, {extra}) => {
     const {api: {photosService}} = extra;
+    let {page, start} = args;
 
     try {
-      return await photosService.getPhotos();
+      return photosService.getPhotos({start, page});
+    } catch {
+      throw `Unable to fetch photos. Please try again.`;
+    }
+  }
+);
+
+export const fetchNextPagePhotos = createAsyncThunk<IFetchPhotosArgs, IGetPhotosResponse>(
+  'PHOTOS/FETCH_NEXT_PAGE',
+  async (args, {extra}) => {
+    const {api: {photosService}} = extra;
+    const {start, page} = args;
+
+    try {
+      return photosService.getPhotos({start, page});
     } catch {
       throw `Unable to fetch photos. Please try again.`;
     }
@@ -31,24 +50,3 @@ export const fetchAlbumPhotos = createAsyncThunk<IFetchAlbumPhotosArgs, IGetPhot
     }
   }
 );
-
-interface IMovePhotosArgs {
-  photosIds: number[];
-  targetAlbumId: number;
-}
-
-export const movePhotos = createAsyncThunk<IMovePhotosArgs, void>(
-  'PHOTOS/MOVE',
-  (args, {extra}) => {
-    const {api: {photosService}} = extra;
-
-    try {
-      return photosService.movePhotos(args);
-    } catch {
-      throw `Unable to move photos into album. Please try again.`;
-    }
-  }
-);
-
-export const togglePhotoSelect = createAction<number>('PHOTOS/TOGGLE_SELECT');
-export const clearPhotoSelection = createAction<number>('PHOTOS/CLEAR_SELECTION');

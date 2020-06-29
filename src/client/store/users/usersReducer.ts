@@ -21,6 +21,17 @@ const usersReducer = createReducer<IUsersState>(initialState, builder => {
       }
     }
   });
+  builder.addCase(photosActions.fetchNextPagePhotos.fulfilled, (state, {payload}) => {
+    const {users} = payload;
+
+    return {
+      ...state,
+      usersHash: {
+        ...state.usersHash,
+        ...users,
+      }
+    }
+  });
 
   builder.addCase(photosActions.fetchAlbumPhotos.fulfilled, (state, {payload}) => {
     const {users} = payload;

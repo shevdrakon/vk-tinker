@@ -67,7 +67,7 @@ export interface IMovePhotoResponse {
   success: boolean;
 }
 
-export interface IFirstPhotoByDateResponse {
+export interface IFindPhotoRangeResponse {
   left: number;
   right: number;
 }

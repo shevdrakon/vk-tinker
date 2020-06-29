@@ -2,8 +2,25 @@ import {FastifyInstance} from 'fastify';
 import PhotosController from './PhotosController';
 
 const photosRouter = async (app: FastifyInstance) => {
-  app.get('/photos', (request, reply) => {
-      return new PhotosController(request, reply).getPhotos();
+  app.get('/photos',
+    {
+      schema: {
+        querystring: {
+          start: {
+            type: 'number',
+            nullable: true,
+          },
+          page: {
+            type: 'number',
+          },
+        },
+      },
+    },
+    (request, reply) => {
+      const {start, page} = request.query;
+      const args = {start, page};
+
+      return new PhotosController(request, reply).getPhotos(args);
     },
   );
 

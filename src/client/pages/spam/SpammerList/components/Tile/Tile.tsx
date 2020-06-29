@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-import {IPhoto} from '../../../../../../server/vk/vk-api/photos/photos.types';
+import {IAlbum, IPhoto} from '../../../../../../server/vk/vk-api/photos/photos.types';
 
 import bemFactory from '../../../../../lib/bem-factory';
 import styles from './Tile.module.scss';
@@ -12,12 +12,13 @@ import LinkIconButton from '../../../../../components/Buttons/LinkIconButton';
 const {block, element} = bemFactory('tile', styles);
 
 interface ITilePhoto {
+  album: IAlbum;
   photo: IPhoto;
   className?: string;
 }
 
 const Tile = (props: ITilePhoto) => {
-  const {photo, className} = props;
+  const {album: {title}, photo, className} = props;
   const imageUrl = photo.sizes['q'].url;
   const classes = cn(block(), className);
   const url = `https://vk.com/photo${photo.owner_id}_${photo.id}`;
@@ -31,6 +32,7 @@ const Tile = (props: ITilePhoto) => {
     <div className={element('shadow')} />
     <div className={element('shadow-up')} />
     <div className={element('actions')}>
+      <span className={element('album-title')}>{title}</span>
       <LinkIconButton href={url} size="small" onClick={handleNavigateClick}>
         <ActionIcon component={ShareIcon} size={18} />
       </LinkIconButton>

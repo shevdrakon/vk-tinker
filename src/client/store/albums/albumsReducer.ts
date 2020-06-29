@@ -1,7 +1,9 @@
-import {createReducer} from '@reduxjs/toolkit';
+import {createReducer, createSelector} from '@reduxjs/toolkit';
 import * as A from './albumsActions';
 
 import {IAlbumsState, AlbumsState} from './albums.types';
+import {IAppState} from '../types/store.types';
+import {IAlbum} from '../../../server/vk/vk-api/photos/photos.types';
 
 const initialState: IAlbumsState = {
   albumsState: AlbumsState.initial,
@@ -33,5 +35,21 @@ const albumsReducer = createReducer<IAlbumsState>(initialState, builder => {
     }
   });
 });
+
+const getAlbumsHash = createSelector<IAppState, IAlbum[], Record<number, IAlbum>>(
+  [state => state.albums.items],
+  albums => {
+    return albums.reduce((acc, cur) => {
+      return {
+        ...acc,
+        [cur.id]: cur,
+      }
+    }, {});
+  }
+);
+
+export const SELECTORS = {
+  getAlbumsHash,
+};
 
 export default albumsReducer;

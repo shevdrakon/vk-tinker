@@ -9,6 +9,7 @@ import cn from 'classnames';
 import bemFactory from '../../../../lib/bem-factory';
 import styles from './TilePhoto.module.scss';
 import IconButton from '../../../../components/Buttons/IconButton';
+import useImageLazyLoading from '../../../../ImageLazyLoading/useImageLazyLoading';
 
 const {block, element} = bemFactory('tile-photo', styles);
 
@@ -53,8 +54,10 @@ const TilePhoto = (props: ITilePhoto) => {
     }
   );
 
+  const [trackedRef] = useImageLazyLoading();
+
   return <div className={block()}>
-    <img alt="" className={element('image')} src={url} />
+    <img ref={trackedRef} alt="" className={element('image')} src="" data-src={url} />
     <div className={element('shadow')} data-role="shadow" />
 
     <div className={element('icons-container')}>

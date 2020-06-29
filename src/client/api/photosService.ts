@@ -1,8 +1,9 @@
+import qs from 'querystring';
 import createGateway from './createGateway';
 import {IGetPhotosResponse, IGetAlbumsResponse} from '../../server/api/photos/types';
 
 export interface IPhotosService {
-  getPhotos: () => Promise<IGetPhotosResponse>;
+  getPhotos: (args: { start: number; page: number; }) => Promise<IGetPhotosResponse>;
   getAlbums: () => Promise<IGetAlbumsResponse>
   getAlbumPhotos: (args: { albumId: number }) => Promise<IGetPhotosResponse>;
   movePhotos: (args: { targetAlbumId: number; photosIds: number[] }) => Promise<void>;
@@ -11,7 +12,12 @@ export interface IPhotosService {
 const createUserService = (config: IAppConfig): IPhotosService => {
   const gateway = createGateway({baseUrl: config.baseUrl});
 
-  const getPhotos = () => gateway.get('/photos');
+  const getPhotos = (args) => {
+    const query = qs.stringify(args);
+
+    return gateway.get(`/photos?${query}`);
+  }
+
   const getAlbums = () => gateway.get('/albums');
   const getAlbumPhotos = ({albumId}) => gateway.get(`/albums/${albumId}/photos`);
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import useBindActionCreators from '../../../../hooks/useBindActionCreators';
 import {initAlbums} from '../../../../store/albums/albumsActions';
+import {clearPhotoSelection} from '../../../../store/photosSelection/photosSelectionActions';
 
 import TileListItem from './TileListItem';
 import TileListItemGhost from './Ghost/TileListItem.Ghost';
@@ -13,13 +14,14 @@ import {AlbumsState} from '../../../../store/albums/albums.types';
 const {block} = bemFactory('tiles-list', styles);
 
 const TilesList = () => {
-  const actions = useBindActionCreators({initAlbums});
+  const actions = useBindActionCreators({initAlbums, clearPhotoSelection});
   const {albumsState, items} = useAppStateSelector(x => x.albums);
 
   const showGhost = [AlbumsState.initial, AlbumsState.processing].includes(albumsState);
   const showAlbums = albumsState === AlbumsState.success && items.length > 0;
 
   React.useEffect(() => {
+    actions.clearPhotoSelection();
     actions.initAlbums();
   }, []);
 

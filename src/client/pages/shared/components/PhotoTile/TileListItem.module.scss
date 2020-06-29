@@ -8,28 +8,15 @@
 
   &--edit [data-role="shadow"],
   &:hover [data-role="shadow"],
-  &:hover &__actions {
+  &:hover [data-role="actions"] {
     opacity: 1;
-  }
-
-  &--edit &__actions,
-  &--selected &__actions {
-    opacity: 1;
-  }
-
-  &__actions {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    fill: #fff;
-    outline: none;
-    padding: 4px 0 0 4px;
   }
 
   &__tile {
+    transition: box-shadow .3s ease-out, transform .145s ease-out, opacity .145s ease-out;
+    transition-delay: .1s;
+    transform: translateZ(0);
+
     &--selected {
       transform: scale(.9);
     }

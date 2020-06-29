@@ -5,7 +5,7 @@ const forceSessionHook: FastifyMiddleware = (request, reply, done) => {
   request.session.authenticated = true;
   request.session.accessToken = {
     tokenType: TokenTypes.Standalone,
-    value: '',
+    value: 'somefakekey',
     expire: Number.MAX_SAFE_INTEGER,
   };
 

@@ -85,7 +85,7 @@
     "fastify-cors": "3.0.3",
     "express-session": "1.17.1",
     "memorystore": "1.6.2",
-    "nconf": "0.10.0",
+    "nconf": "0.11.4",
     "isomorphic-fetch": "2.2.1",
     "pino": "6.3.2",
     "react": "16.13.1",
